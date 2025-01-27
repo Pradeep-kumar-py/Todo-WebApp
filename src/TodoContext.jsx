@@ -7,6 +7,7 @@ export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
     // const [TaskBox, setTaskBox] = useState([]);
     // const [checkBox, setcheckBox] = useState([]);
+        const [Hide, setHide] = useState(false)
 
     const [TaskBox, setTaskBox] = useState(() => {
         const savedTasks = localStorage.getItem('TaskBoxData');
@@ -43,7 +44,7 @@ export const TodoProvider = ({ children }) => {
     }, [Lists])
 
     return (
-        <TodoContext.Provider value={{ TaskBox, setTaskBox, checkBox, setcheckBox, Lists, setLists }}>
+        <TodoContext.Provider value={{ TaskBox, setTaskBox, checkBox, setcheckBox, Lists, setLists, Hide, setHide }}>
             {children}
         </TodoContext.Provider>
     );

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { TodoContext } from './TodoContext.jsx';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -12,7 +13,10 @@ import StickyWall from './components/StickyWall';
 import WebViewer from './components/WebViewer.jsx';
 
 
+
 export default function App() {
+  const {Hide, setHide} = useContext(TodoContext)
+  
   return (
     <>
       <Router>
@@ -20,7 +24,7 @@ export default function App() {
           
             <Left />
           
-          <div className="right w-[75vw] border-2 h-[99vh]">
+          <div className={`right w-[75vw] border-2 h-[99vh] ${Hide? "w-full": "w-[75vw]" } `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

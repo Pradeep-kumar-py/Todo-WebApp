@@ -16,6 +16,8 @@ const Upcoming = () => {
     //To load data from Local storage
     const {TaskBox, setTaskBox} = useContext(TodoContext)
     const {checkBox, setcheckBox} = useContext(TodoContext)
+    const {Hide, setHide} = useContext(TodoContext)
+    
     // const [TaskBox, setTaskBox] = useState([])
     // const [checkBox, setcheckBox] = useState([])
     // const [TaskBox, setTaskBox] = useState(() => {
@@ -153,22 +155,22 @@ const Upcoming = () => {
         }
 
         return (
-            <div className='w-[33.5vw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto' id={id} >
+            <div className={`w-[33.5vw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto ${Hide? "w-[45dvw]":"w-[33.5]" } `} id={id} >
                 <h1 className='text-2xl font-bold mb-2 flex items-center justify-between ' >
                     {IsEditing ? (
                         <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 w-[85%] " />
                     ) : (<span onClick={() => setIsEditing(true)} className="cursor-pointer break-words w-[90%] " >{TaskBoxTitle}</span>)}
                     <p className="flex gap-2 " > <RxCross2 className="cursor-pointer" onClick={() => onDelete(id)} /><FiEdit className='text-[20px] cursor-pointer ' onClick={() => setIsEditing(true)} /></p>
                 </h1>
-                <div className="flex border-2 w-full gap-4 font-semibold text-gray-500 h-10 items-center rounded-md" >
+                <div className="flex border-2 w-full gap-4 font-semibold text-gray-500 h-10 md:h-11 items-center rounded-md" >
                     {IsAddingTask ? (
                         <input type='text'
                             value={newTaskName}
                             onChange={(e) => setnewTaskName(e.target.value)}
                             onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }} placeholder='Enter new Task' autoFocus className=" text-xl pl-2 outline-none  w-full " />
                     ) : (
-                        <div className='flex w-full gap-4 pr-4 pl-1 font-semibold text-gray-500 h-10 items-center rounded-md justify-between ' >
-                            <button onClick={() => setIsAddingTask(true)} autoFocus className='flex w-full gap-4  outline-none' >
+                        <div className={`flex w-full gap-4 pr-4 pl-1 font-semibold text-gray-500  items-center rounded-md justify-between  `} >
+                            <button onClick={() => setIsAddingTask(true)} autoFocus className={`flex w-full gap-4  outline-none `}>
                                 <p className='flex gap-3' ><MdAdd className="text-[25px] text-gray-500" />Add New Task</p>
                             </button>
                             <BsThreeDots className={`cursor-pointer text-3xl`} />
@@ -204,7 +206,7 @@ const Upcoming = () => {
 
         return (
             <>
-                <div className={`flex gap-3 mt-2 items-center h-9 border-2 rounded-md pl-2 w-full ${checked ? "bg-gray-200  line-through ":""} `} >
+                <div className={`flex gap-3 mt-2 items-center h-9 border-2 rounded-md pl-2 w-full sm:h-10 ${checked ? "bg-gray-200  line-through ":""} `} >
                     {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none " />) : (
                         <>
                             <div className="flex items-center justify-between w-full  " >

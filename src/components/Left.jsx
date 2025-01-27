@@ -14,6 +14,7 @@ import { IoSettings } from "react-icons/io5";
 import { FaSignOutAlt } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { list } from "postcss";
+import { GiHidden } from "react-icons/gi";
 const uniqueID = uuidv4();
 // import './index.css'
 
@@ -22,6 +23,8 @@ const Left = () => {
     const { TaskBox, setTaskBox } = useContext(TodoContext)
     const { checkBox, setcheckBox } = useContext(TodoContext)
     const {Lists, setLists} = useContext(TodoContext)
+    const {Hide, setHide} = useContext(TodoContext)
+    // const [Hide, setHide] = useState(false)
 
     // Filter TaskBox for tasks with title "today"
     const todayTask = TaskBox.filter(task =>
@@ -103,6 +106,7 @@ const Left = () => {
     }
 
 
+
     const TaskItems = ({ to, Icon, Title, id, NOFTask, selectedDiv, setselectedDiv }) => {
         return (
             <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
@@ -150,15 +154,31 @@ const Left = () => {
         )
     }
 
+    const SideBar = ()=>{
+        return(
+            <>
+                <div className={`flex flex-col mt-3  gap-5 text-gray-600 ${Hide ? "inline-block": "hidden" } `} >
+                    <RxHamburgerMenu onClick={()=> setHide(!Hide)} className="text-2xl cursor-pointer " />
+                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-2xl" /></Link>
+                    <Link to="/Today" ><FaListCheck className="text-2xl" /></Link>
+                    <Link to="/Calendar" ><FaCalendarAlt className="text-2xl" /></Link>
+                    <Link to="/StickyWall" ><FaNoteSticky className="text-2xl"/></Link>
+                </div>
+            </>
+        )
+    }
+
+
 
     return (
         <>
-            <div className="left w-[25vw] border-2 sticky h-[99vh] top-0 ">
+            <SideBar/>
+            <div className={`left w-[25vw] border-2 sticky h-[99vh] top-0 ${Hide ? "hidden": "inline-block" } `}>
                 <div className="m-3 bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] ">
                     <div className="flex flex-col gap-5 ">
                         <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
                             <h1 className="text-2xl font-bold text-gray-600" >Menu</h1>
-                            <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu /></span>
+                            <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu onClick={()=> setHide(!Hide)} /></span>
                         </div>
                         <div className="flex relative " >
                             <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold" />

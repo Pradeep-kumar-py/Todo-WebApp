@@ -1,5 +1,5 @@
 
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { TodoContext } from '../TodoContext';
 import { useState, useEffect } from 'react';
 import { FiEdit } from "react-icons/fi";
@@ -14,10 +14,10 @@ import { stringify } from 'uuid';
 
 const Upcoming = () => {
     //To load data from Local storage
-    const {TaskBox, setTaskBox} = useContext(TodoContext)
-    const {checkBox, setcheckBox} = useContext(TodoContext)
-    const {Hide, setHide} = useContext(TodoContext)
-    
+    const { TaskBox, setTaskBox } = useContext(TodoContext)
+    const { checkBox, setcheckBox } = useContext(TodoContext)
+    const { Hide, setHide } = useContext(TodoContext)
+
     // const [TaskBox, setTaskBox] = useState([])
     // const [checkBox, setcheckBox] = useState([])
     // const [TaskBox, setTaskBox] = useState(() => {
@@ -25,26 +25,26 @@ const Upcoming = () => {
     //     return savedTasks ? JSON.parse(savedTasks) : [];
     // })
 
-    
+
     // const [checkBox, setcheckBox] = useState(() => {
-        //     const savedChecks = localStorage.getItem('checkBoxData');
-        //     return savedChecks ? JSON.parse(savedChecks) : [];
-        // });
-        
-        const [IsModalOpen, setIsModalOpen] = useState(false)
+    //     const savedChecks = localStorage.getItem('checkBoxData');
+    //     return savedChecks ? JSON.parse(savedChecks) : [];
+    // });
+
+    const [IsModalOpen, setIsModalOpen] = useState(false)
 
 
 
-    
-    
+
+
     // useEffect(() => {
     //     const savedTask = localStorage.getItem('TaskBoxData')
     //     if (savedTask) {
     //         setTaskBox(JSON.parse(savedTask));
     //     }
     // }, [])
-    
-    
+
+
     // useEffect(() => {
     //     const savedChecks = localStorage.getItem('checkBoxData');
     //     if (savedChecks) {
@@ -57,7 +57,7 @@ const Upcoming = () => {
 
     // To save the data
 
-    
+
 
     // useEffect(() => {
     //     console.log("saved TaskBox: ", TaskBox)
@@ -92,8 +92,8 @@ const Upcoming = () => {
 
     //To delete the taskbox
 
-    const handleDeleteTaskBox = (id,taskBoxId) => {
-        setTaskBox((prevTaskBox) => prevTaskBox.filter((box) => box.id !== id  ));
+    const handleDeleteTaskBox = (id, taskBoxId) => {
+        setTaskBox((prevTaskBox) => prevTaskBox.filter((box) => box.id !== id));
         setcheckBox((prevcheckBox) => prevcheckBox.filter(task => task && task.taskBoxId !== id))
         console.log("deleted task id: ", id)
     }
@@ -116,13 +116,13 @@ const Upcoming = () => {
     }
 
     const handleCheckedTask = (taskId) => {
-        setcheckBox((prevcheckbox)=>{
-            const updatedTask = prevcheckbox.map((task)=> task.id === taskId ? {...task, checked: !task.checked}: task)
+        setcheckBox((prevcheckbox) => {
+            const updatedTask = prevcheckbox.map((task) => task.id === taskId ? { ...task, checked: !task.checked } : task)
             console.log("Updated checkBox state:", updatedTask);
-            localStorage.setItem('checkBoxData',JSON.stringify(updatedTask))
+            localStorage.setItem('checkBoxData', JSON.stringify(updatedTask))
             return updatedTask;
-    });
-}
+        });
+    }
 
 
 
@@ -155,8 +155,8 @@ const Upcoming = () => {
         }
 
         return (
-            <div className={`w-[33.5vw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto ${Hide? "w-[45dvw]":"w-[33.5]" } `} id={id} >
-                <h1 className='text-2xl font-bold mb-2 flex items-center justify-between ' >
+            <div className={`w-[37dvw] min-w-[200px] border-2 border-gray-400  h-auto  self-start p-4  relative   rounded-md overflow-y-auto overflow-x-hidden max-lg:w-full  ${Hide ? "w-[45dvw]" : "w-[33.5]"} `} id={id} >
+                <h1 className='text-2xl max-md:text-lg max-lg:text-xl font-bold mb-2 flex items-center justify-between ' >
                     {IsEditing ? (
                         <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 w-[85%] " />
                     ) : (<span onClick={() => setIsEditing(true)} className="cursor-pointer break-words w-[90%] " >{TaskBoxTitle}</span>)}
@@ -167,7 +167,11 @@ const Upcoming = () => {
                         <input type='text'
                             value={newTaskName}
                             onChange={(e) => setnewTaskName(e.target.value)}
-                            onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }} placeholder='Enter new Task' autoFocus className=" text-xl pl-2 outline-none  w-full " />
+                            onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }}
+                            placeholder='Enter new Task'
+                            autoFocus
+                            className=" text-xl pl-2 outline-none  w-full "
+                        />
                     ) : (
                         <div className={`flex w-full gap-4 pr-4 pl-1 font-semibold text-gray-500  items-center rounded-md justify-between  `} >
                             <button onClick={() => setIsAddingTask(true)} autoFocus className={`flex w-full gap-4  outline-none `}>
@@ -206,7 +210,7 @@ const Upcoming = () => {
 
         return (
             <>
-                <div className={`flex gap-3 mt-2 items-center h-9 border-2 rounded-md pl-2 w-full sm:h-10 ${checked ? "bg-gray-200  line-through ":""} `} >
+                <div className={`flex-1 gap-3 mt-2 items-center pt-1 pb-1 pr-1 border-2 rounded-md pl-2 w-full  ${checked ? "bg-gray-200  line-through " : ""} `} >
                     {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none " />) : (
                         <>
                             <div className="flex items-center justify-between w-full  " >
@@ -214,8 +218,8 @@ const Upcoming = () => {
                                     <input
                                         type="checkbox"
                                         id={taskId}
-                                        checked = {checked}
-                                        onChange={()=> onToggle(taskId)}
+                                        checked={checked}
+                                        onChange={() => onToggle(taskId)}
                                         className="cursor-pointer break-words "
                                     />
                                     {TaskName}
@@ -233,17 +237,18 @@ const Upcoming = () => {
 
     return (
         <>
-            <div className={`h-[99vh] overflow-hidden`} >
-                <div className='flex justify-between m-3'>
+            <div className={`h-[99vh] overflow-hidden w-full ml-2 `} >
+                <div className='flex justify-between items-center m-3 '>
                     <div className='flex items-center gap-5'>
-                        <div className='text-5xl font-bold' >Upcoming</div>
-                        <span className='h-12 w-12 flex items-center justify-center text-4xl font-semibold border-2 rounded-md' >{checkBox.length}</span>
+                        <div className='text-5xl font-bold max-md:text-2xl ' >Upcoming</div>
+                        <span className='h-12 max-md:h-8 max-md:w-8 w-12  flex items-center justify-center text-4xl max-md:text-2xl font-semibold border-2 rounded-md' >{checkBox.length}</span>
                     </div>
-                    <div className='w-24 h-12 bg-blue-200 flex items-center justify-center rounded-2xl text-lg font-semibold text-gray-700 cursor-pointer hover:bg-blue-300 transition-all duration-500 ' onClick={() => setIsModalOpen(true)} >
+                    <div className='w-24 max-md:w-18  h-12 max-md:h-9 bg-blue-200 flex items-center justify-center rounded-2xl text-lg font-semibold text-gray-700 cursor-pointer hover:bg-blue-300 transition-all duration-500 ' onClick={() => setIsModalOpen(true)} >
                         Add List
                     </div>
                 </div>
-                <div className='flex flex-wrap gap-0 justify-between overflow-y-auto h-[90vh] overflow-hidden' >
+                <hr class="border-1 border-gray-600"></hr>
+                <div class="grid grid-cols-2 max-sm:grid-cols-1 grid-flow-row auto-rows-max gap-4 max-lg:scrollbar-hide m h-[90vh]  overflow-y-auto " >
                     {TaskBox.map((box) => (
                         <NewList
                             key={box.id}

@@ -69,13 +69,14 @@ const StickyWall = () => {
                 + Add Note
             </button>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', overflow:"auto", height: "87vh" }}>
                 {notes.map(note => (
                     <div
                         key={note.id}
                         style={{
-                            width: '300px',
+                            width: '350px',
                             height: '300px',
+                            
                             backgroundColor: note.bgColor,
                             color: note.textColor,
                             borderRadius: '10px',

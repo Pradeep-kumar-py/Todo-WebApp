@@ -98,7 +98,7 @@ const Today = () => {
     }
 
     return (
-      <div className='w-[70vw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto' id={id} >
+      <div className='w-[75dvw] max-lg:w-[90dvw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto' id={id} >
         <h1 className='text-2xl font-bold mb-2 flex items-center justify-between' >
           {IsEditing ? (
             <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 w-[85%]" />

@@ -22,8 +22,8 @@ const Left = () => {
 
     const { TaskBox, setTaskBox } = useContext(TodoContext)
     const { checkBox, setcheckBox } = useContext(TodoContext)
-    const {Lists, setLists} = useContext(TodoContext)
-    const {Hide, setHide} = useContext(TodoContext)
+    const { Lists, setLists } = useContext(TodoContext)
+    const { Hide, setHide } = useContext(TodoContext)
     // const [Hide, setHide] = useState(false)
 
     // Filter TaskBox for tasks with title "today"
@@ -67,16 +67,16 @@ const Left = () => {
     //         console.log("Add new list:", newList)
     //     }
     // }
-    
+
     const handleAddNewList = () => {
         const name = prompt('Enter the title of New List: ');
         const SiteUrl = prompt("Enter URL: ");
-        
+
         if (name && SiteUrl) {
             try {
                 const url = new URL(SiteUrl);
                 let embedUrl = SiteUrl;
-    
+
                 // Example logic: Convert YouTube video URLs to embed format
                 if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
                     const videoId = url.searchParams.get("v");
@@ -87,7 +87,7 @@ const Left = () => {
                     // Handle shortened YouTube URLs
                     embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
                 }
-    
+
                 const newList = { id: Date.now(), name, SiteUrl: embedUrl };
                 setLists((prevLists) => [...prevLists, newList]);
                 console.log("Added new list:", newList);
@@ -97,11 +97,11 @@ const Left = () => {
             }
         }
     };
-    
-    
 
-    const handleDeleteSite =(id)=>{
-        setLists((previousSite)=> previousSite.filter(list => list.id != id) )
+
+
+    const handleDeleteSite = (id) => {
+        setLists((previousSite) => previousSite.filter(list => list.id != id))
 
     }
 
@@ -117,17 +117,17 @@ const Left = () => {
             </li>
         )
     }
-    const ListItems = ({ id, NOFTask, name, onAddNew,to }) => {
+    const ListItems = ({ id, NOFTask, name, onAddNew, to }) => {
         return (
             <li className={`${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
                 <Link to={to} className="flex items-center gap-1 justify-between p-[5px] w-[100%]  box-border rounded-md cursor-pointer" >
-                <div className="flex items-center gap-2 relative">
-                    <div className="h-4 w-4 bg-red-500 rounded-[4px] " ></div>
-                    <p className="text-lg font-semibold text-gray-500 w-[220px] overflow-hidden " >{name}</p>
-                </div>
-                <button className={` flex items-center justify-center`} >
-                    <RxCross2 className="cursor-pointer text-xl text-gray-600 " onClick ={()=> handleDeleteSite(id)} />
-                </button>
+                    <div className="flex items-center gap-2 relative">
+                        <div className="h-4 w-4 bg-red-500 rounded-[4px] " ></div>
+                        <p className="text-lg font-semibold text-gray-500 w-[220px] overflow-hidden " >{name}</p>
+                    </div>
+                    <button className={` flex items-center justify-center`} >
+                        <RxCross2 className="cursor-pointer text-xl text-gray-600 " onClick={() => handleDeleteSite(id)} />
+                    </button>
                 </Link>
             </li>
         )
@@ -154,15 +154,15 @@ const Left = () => {
         )
     }
 
-    const SideBar = ()=>{
-        return(
+    const SideBar = () => {
+        return (
             <>
-                <div className={`flex flex-col mt-3  gap-5 text-gray-600 ${Hide ? "inline-block": "hidden" } `} >
-                    <RxHamburgerMenu onClick={()=> setHide(!Hide)} className="text-2xl cursor-pointer " />
-                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-2xl" /></Link>
-                    <Link to="/Today" ><FaListCheck className="text-2xl" /></Link>
-                    <Link to="/Calendar" ><FaCalendarAlt className="text-2xl" /></Link>
-                    <Link to="/StickyWall" ><FaNoteSticky className="text-2xl"/></Link>
+                <div className={`flex flex-col mt-3 max-lg:inline-block gap-5   text-gray-600 ${Hide ? "inline-block" : "hidden"} `} >
+                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-2xl cursor-pointer mb-3 " />
+                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-2xl mb-3 " /></Link>
+                    <Link to="/Today" ><FaListCheck className="text-2xl mb-3 " /></Link>
+                    <Link to="/Calendar" ><FaCalendarAlt className="text-2xl mb-3" /></Link>
+                    <Link to="/StickyWall" ><FaNoteSticky className="text-2xl mb-3 " /></Link>
                 </div>
             </>
         )
@@ -172,52 +172,54 @@ const Left = () => {
 
     return (
         <>
-            <SideBar/>
-            <div className={`left w-[25vw] border-2 sticky h-[99vh] top-0 ${Hide ? "hidden": "inline-block" } `}>
-                <div className="m-3 bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] ">
-                    <div className="flex flex-col gap-5 ">
-                        <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
-                            <h1 className="text-2xl font-bold text-gray-600" >Menu</h1>
-                            <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu onClick={()=> setHide(!Hide)} /></span>
-                        </div>
-                        <div className="flex relative " >
-                            <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold" />
-                            <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
-                        </div>
-                        <div className=" mt-4" >
-                            <h2 className="font-bold text-gray-600" >TASKS</h2>
-                            <ul className="ml-2 mt-3  flex flex-col gap-3 " >
-                                <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
-                                <TaskItems to={"/Today"} id={2} NOFTask={filteredTask.length} Icon={<FaListCheck />} Title="Today" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
-                                <TaskItems1 to="/Calendar" id={3} NOFTask={null} Icon={<FaCalendarAlt />} Title="Calendar" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
-                                <TaskItems1 to="/StickyWall" id={4} NOFTask={null} Icon={<FaNoteSticky />} Title="Sticky Wall" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
-                            </ul>
-                        </div>
-                        <hr className=" border-t-[2px] border-gray-200" />
-                        <div className="" >
-                            <h3 className="font-bold text-gray-600" >LISTS</h3>
-                            <div className="max-h-[200px] overflow-auto">
-                                <ul className="ml-[15px] mt-3  flex flex-col gap-3 overflow-x-hidden " >
-                                    <ListItems id={5} name="Personel" NOFTask={12} />
-
-                                    {Lists.map((site) => (
-                                        <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} NOFTask={null} />
-                                    ))}
-                                    <AddNewListButton onClick={handleAddNewList} id={6} Title={"Add New List"} Icon={<MdAdd className="text-[25px] text-gray-500" />} />
+            <div className="" >
+                <SideBar />
+                <div className={`left w-[20vw] border-2 sticky h-[99dvh] max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
+                    <div className="m-3 bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] ">
+                        <div className="flex flex-col gap-5 ">
+                            <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
+                                <h1 className="text-2xl font-bold text-gray-600" >Menu</h1>
+                                <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu onClick={() => setHide(!Hide)} /></span>
+                            </div>
+                            <div className="flex relative " >
+                                <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold" />
+                                <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
+                            </div>
+                            <div className=" mt-4" >
+                                <h2 className="font-bold text-gray-600" >TASKS</h2>
+                                <ul className="ml-2 mt-3  flex flex-col gap-3 " >
+                                    <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
+                                    <TaskItems to={"/Today"} id={2} NOFTask={filteredTask.length} Icon={<FaListCheck />} Title="Today" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
+                                    <TaskItems1 to="/Calendar" id={3} NOFTask={null} Icon={<FaCalendarAlt />} Title="Calendar" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
+                                    <TaskItems1 to="/StickyWall" id={4} NOFTask={null} Icon={<FaNoteSticky />} Title="Sticky Wall" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                 </ul>
                             </div>
-                        </div>
-                        <hr className=" border-t-[2px] border-gray-200" />
+                            <hr className=" border-t-[2px] border-gray-200" />
+                            <div className="" >
+                                <h3 className="font-bold text-gray-600" >LISTS</h3>
+                                <div className="max-h-[200px] overflow-auto">
+                                    <ul className="ml-[15px] mt-3  flex flex-col gap-3 overflow-x-hidden " >
+                                        <ListItems id={5} name="Personel" NOFTask={12} />
 
-                    </div>
-                    <div className="footer ml-3 mb-3 flex flex-col gap-3">
-                        <div>
-                            <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 7 ? 'bg-gray-200' : 'bg-gray-100'}  transition-all duration-300`} onClick={() => setselectedDiv(7)}><IoSettings />Settings</div>
-                        </div>
-                        <div>
-                            <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 8 ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300 `} onClick={() => setselectedDiv(8)}><FaSignOutAlt />Log out</div>
-                        </div>
+                                        {Lists.map((site) => (
+                                            <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} NOFTask={null} />
+                                        ))}
+                                        <AddNewListButton onClick={handleAddNewList} id={6} Title={"Add New List"} Icon={<MdAdd className="text-[25px] text-gray-500" />} />
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr className=" border-t-[2px] border-gray-200" />
 
+                        </div>
+                        <div className="footer ml-3 mb-3 flex flex-col gap-3">
+                            <div>
+                                <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 7 ? 'bg-gray-200' : 'bg-gray-100'}  transition-all duration-300`} onClick={() => setselectedDiv(7)}><IoSettings />Settings</div>
+                            </div>
+                            <div>
+                                <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 8 ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300 `} onClick={() => setselectedDiv(8)}><FaSignOutAlt />Log out</div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -16,15 +16,16 @@ import WebViewer from './components/WebViewer.jsx';
 
 export default function App() {
   const {Hide, setHide} = useContext(TodoContext)
+  console.log(Hide)
   
   return (
     <>
       <Router>
-        <div className="body border-2  min-h-[99vh] flex gap-1  ">
+        <div className="body   min-h-[99vh] flex gap-1  ">
           
             <Left />
           
-          <div className={`right w-[75vw] border-2 h-[99vh] ${Hide? "w-full": "w-[75vw]" } `}>
+          <div className={`right w-[79vw]  h-[99dvh] max-md:w-[88dvw] max-lg:w-[94dvw]   ${Hide? "w-[100dvw]": "w-[79vw]" } `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

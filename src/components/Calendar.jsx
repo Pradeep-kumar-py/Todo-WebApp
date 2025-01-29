@@ -89,7 +89,7 @@ const MyBigCalendar = () => {
                 messages={{
                     noEventsInRange: 'No events in this range, feel free to add one!',
                 }}
-                style={{ height: 750 }}
+                style={{ height: 750,  }}
             />
 
             {/* Modal */}

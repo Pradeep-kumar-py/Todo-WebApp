@@ -7,23 +7,9 @@
     margin: 0;
 }
 
-
-/* Dark mode styling for React Big Calendar */
-.dark .rbc-calendar {
-    background-color: #1f2937 !important; /* gray-800 */
-    color: #f9fafb !important; /* gray-50 */
-}
-
-.dark .rbc-toolbar {
-    background-color: #374151 !important; /* gray-700 */
-    color: white !important;
-}
-
-.dark .rbc-event {
-    background-color: #3b82f6 !important; /* blue-500 */
-    color: white !important;
-}
-
-.dark .rbc-today {
-    background-color: #374151 !important; /* gray-700 */
-}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrolling */
+    height: 100%;
+  }

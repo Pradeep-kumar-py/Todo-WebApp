@@ -223,7 +223,7 @@ const Left = () => {
                             <hr className=" border-t-[2px] border-gray-200" />
                             <div className="w-full" >
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
-                                <div className="h-[41dvh] overflow-auto w-full" >
+                                <div className="h-[40dvh] overflow-auto w-full" >
                                     <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
 

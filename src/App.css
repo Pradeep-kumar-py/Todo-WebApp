@@ -4,10 +4,8 @@
 }
 
 
-.your-container {
-    height: calc(var(--vh) * 100);
-     /* Prevent extra scrolling */
-  }
+  
+
   
 
 /* Dark mode styles for React Big Calendar */

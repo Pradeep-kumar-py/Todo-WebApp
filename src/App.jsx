@@ -13,7 +13,7 @@ import useViewportHeight from './components/viewPort.jsx';
 
 export default function App() {
   const { Hide, setHide } = useContext(TodoContext)
-  // useViewportHeight();
+  useViewportHeight();
   // Apply dark mode class on initial load
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
@@ -25,11 +25,11 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body flex gap-1 bg-white overflow-x-hidden dark:bg-gray-900 transition-colors duration-200">
-          <div className='min-h-[100svh]'>
+        <div className="body flex gap-1 h-[100lvh] h-screen-fixed bg-white overflow-x-hidden dark:bg-gray-900 transition-colors duration-200">
+          <div className='h-[100lvh]'>
             <Left />
           </div>
-          <div className={`right w-[79dvw] min-h-[100svh] max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>
+          <div className={`right w-[79dvw] h-[100lvh]  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

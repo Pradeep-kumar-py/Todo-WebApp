@@ -1,17 +1,14 @@
+import './index.css'
 import { useState, useEffect, useContext } from 'react'
 import { TodoContext } from './TodoContext.jsx';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Left from './components/Left.jsx';
 import Upcoming from './components/Upcoming';
 import Today from './components/Today';
 import Calendar from './components/Calendar';
-import './index.css'
 import StickyWall from './components/StickyWall';
 import WebViewer from './components/WebViewer.jsx';
-
 
 
 

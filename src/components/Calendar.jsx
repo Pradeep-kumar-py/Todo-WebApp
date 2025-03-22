@@ -75,7 +75,7 @@ const MyBigCalendar = () => {
     
 
     return (
-        <div style={{ height: '500px', margin: '20px' }}>
+        <div style={{ height: '500px', margin: '20px' }} >
             <h2 className="text-2xl font-bold w-40 m-auto font-serif " >Calendar</h2>
             <Calendar
                 localizer={localizer}
@@ -95,12 +95,12 @@ const MyBigCalendar = () => {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h3 className="text-lg font-semibold mb-4">Add New Event</h3>
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-96">
+                        <h3 className="text-lg font-semibold mb-4 text-gray-400 ">Add New Event</h3>
                         <input
                             type="text"
                             placeholder="Event Title"
-                            className="border p-2 w-full rounded-md mb-4 "
+                            className="border outline-none dark:bg-gray-600 p-2 w-full rounded-md mb-4 "
                             value={newEvent.title}
                             autoFocus
                             onKeyDown={(e)=> {if(e.key === "Enter") e.preventDefault(), handleSaveEvent()}}
@@ -116,7 +116,7 @@ const MyBigCalendar = () => {
                                 Cancel
                             </button>
                             <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                                className="px-4 py-2 bg-purple-400 dark:bg-gradient-to-r from-blue-700  to-purple-700 text-white rounded-md"
                                 onClick={handleSaveEvent}
                             >
                                 Save

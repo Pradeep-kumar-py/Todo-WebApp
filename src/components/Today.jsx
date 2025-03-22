@@ -98,25 +98,25 @@ const Today = () => {
     }
 
     return (
-      <div className='w-[75dvw] max-lg:w-[90dvw] border-2 m-5 h-auto  self-start p-4  relative   rounded-md overflow-auto' id={id} >
+      <div className='w-[75dvw] max-lg:w-[90dvw] border-2 m-5 h-auto  self-start p-4  relative  dark:border-gray-600  rounded-md overflow-auto' id={id} >
         <h1 className='text-2xl font-bold mb-2 flex items-center justify-between' >
           {IsEditing ? (
-            <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 w-[85%]" />
+            <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 dark:bg-gray-700 dark:text-white w-[85%]" />
           ) : (<span onClick={() => setIsEditing(true)} className="cursor-pointer" >{TaskBoxTitle}</span>)}
           <p className="flex gap-2 " > <RxCross2 className="cursor-pointer" onClick={() => onDelete(id)} /><FiEdit className='text-[20px] cursor-pointer ' onClick={() => setIsEditing(true)} /></p>
         </h1>
-        <div className="flex border-2 w-full gap-4 font-semibold text-gray-500 h-10 items-center rounded-md" >
+        <div className="flex border-2 dark:border-gray-600 w-full gap-4 font-semibold text-gray-500 h-10 items-center rounded-md" >
           {IsAddingTask ? (
             <input type='text'
               value={newTaskName}
               onChange={(e) => setnewTaskName(e.target.value)}
-              onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }} placeholder='Enter new Task' autoFocus className=" text-xl pl-2 outline-none  w-full " />
+              onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }} placeholder='Enter new Task' autoFocus className=" text-xl pl-2 outline-none  w-full dark:bg-gray-700 dark:text-white " />
           ) : (
             <div className='flex w-full gap-4 pr-4 pl-1 font-semibold text-gray-500 h-10 items-center rounded-md justify-between ' >
               <button onClick={() => setIsAddingTask(true)} autoFocus className='flex w-full gap-4  outline-none' >
-                <p className='flex gap-3' ><MdAdd className="text-[25px] text-gray-500" />Add New Task</p>
+                <p className='flex gap-3 dark:text-white' ><MdAdd className="text-[25px] text-gray-500 dark:text-white" />Add New Task</p>
               </button>
-              <BsThreeDots className={`cursor-pointer text-3xl`} />
+              <BsThreeDots className={`cursor-pointer text-3xl dark:text-white`} />
             </div>
           )}
         </div>
@@ -149,17 +149,17 @@ const Today = () => {
 
     return (
       <>
-        <div className={`flex gap-3 mt-2 items-center h-11 border-2 rounded-md pl-2 w-full ${checked ? "bg-gray-200  line-through " : ""} `} >
-          {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none " />) : (
+        <div className={`flex gap-3 mt-2 items-center h-11 border-2 dark:border-gray-700 rounded-md pl-2 w-full ${checked ?"bg-gray-200 line-through dark:bg-gray-700" : ""} `} >
+          {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none  dark:bg-gray-700 dark:text-white " />) : (
             <>
               <div className="flex items-center justify-between w-full  " >
-                <label for="taskId" className="flex gap-3 peer-checked:bg-blue-600 overflow-hidden" >
+                <label for="taskId" className="flex gap-3  overflow-hidden" >
                   <input
                     type="checkbox"
                     id={taskId}
                     checked={checked}
                     onChange={() => onToggle(taskId)}
-                    className="cursor-pointer  "
+                    className="cursor-pointer dark:bg-gray-700 dark:text-white"
                   />
                   {TaskName}
                 </label>
@@ -176,7 +176,7 @@ const Today = () => {
 
   return (
     <>
-      <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 pt-1 pb-1 w-[] rounded-xl m-auto " >Today Task</div>
+      <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 pt-1 pb-1 w-[] rounded-xl m-auto dark:bg-gray-700 dark:text-white " >Today Task</div>
       {todayTask.map(box => (
         <NewList
           key={box.id}

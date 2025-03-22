@@ -10,30 +10,33 @@ import Calendar from './components/Calendar';
 import StickyWall from './components/StickyWall';
 import WebViewer from './components/WebViewer.jsx';
 
-
-
 export default function App() {
   const {Hide, setHide} = useContext(TodoContext)
-  console.log(Hide)
+  
+  // Apply dark mode class on initial load
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode && JSON.parse(savedMode)) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
   
   return (
     <>
       <Router>
-        <div className="body min-h-[99vh] flex gap-1  "> 
+        <div className="body min-h-[99vh] flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200"> 
             <Left />
-          <div className={`right w-[79vw]  h-[99dvh] max-md:w-[88dvw] max-lg:w-[94dvw]   ${Hide? "w-full": "w-[79vw]" } `}>
+          <div className={`right w-[79vw] h-[99dvh] max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide? "w-full": "w-[79vw]" } `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />
               <Route path="/Calendar" element={<Calendar />} />
               {/* <Route path="/StickyWall" element={<StickyWall />} /> */}
               <Route path="/web/:site" element={<WebViewer />} />
-              
             </Routes>
           </div>
         </div>
       </Router>
-
     </>
   )
 }

@@ -16,6 +16,7 @@ import { RxCross2 } from "react-icons/rx";
 import { list } from "postcss";
 import { GiHidden } from "react-icons/gi";
 import AddNewListModal from "./AddNewListModal";
+import DarkModeToggle from "./DarkModeToggle";
 
 const uniqueID = uuidv4();
 // import './index.css'
@@ -125,24 +126,24 @@ const Left = () => {
 
     const TaskItems = ({ to, Icon, Title, id, NOFTask, selectedDiv, setselectedDiv }) => {
         return (
-            <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
+            <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md dark:bg-gray-700 dark:hover:bg-gray-900 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
                 <Link to={to} className="flex items-center justify-between w-full text-inherit">
-                    <p className="flex items-center gap-3 text-gray-500 text-[20px] font-semibold ">{Icon}{Title} </p>
-                    <span className={`h-5 w-7 rounded-[4px] bg-gray-200 text-[12px] flex items-center justify-center font-semibold ${selectedDiv === id ? 'bg-white' : 'bg-gray-200'} `} >{NOFTask}</span>
+                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-[20px] font-semibold ">{Icon}{Title} </p>
+                    <span className={`h-5 w-7 rounded-[4px] bg-gray-200 text-[12px] flex items-center justify-center font-semibold dark:bg-gray-900 dark:text-white ${selectedDiv === id ? 'bg-white' : 'bg-gray-200'} `} >{NOFTask}</span>
                 </Link>
             </li>
         )
     }
     const ListItems = ({ id, NOFTask, name, onAddNew, to }) => {
         return (
-            <li className={` w-full ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
-                <Link to={to} className="flex w-full items-center gap-1 p-[5px] border-2 rounded-md cursor-pointer" >
+            <li className={` dark:bg-gray-700 dark:hover:bg-gray-900 rounded-md w-full ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
+                <Link to={to} className="flex w-full items-center gap-1 p-[5px] border-2 dark:border-gray-600 rounded-md cursor-pointer" >
                     <div className="flex items-center gap-2 w-full ">
                         <span className="h-4 w-4 bg-red-500 rounded-[4px] " ></span>
-                        <span className="text-lg font-semibold text-gray-500 w-[160px] overflow-clip " >{name}</span>
+                        <span className="text-lg font-semibold text-gray-500 dark:text-white w-[160px] overflow-clip " >{name}</span>
                     </div>
                     <button className={` flex items-center justify-center`} >
-                        <RxCross2 className="cursor-pointer text-xl text-gray-600 " onClick={() => handleDeleteSite(id)} />
+                        <RxCross2 className="cursor-pointer text-xl text-gray-600 dark:text-white " onClick={() => handleDeleteSite(id)} />
                     </button>
                 </Link>
             </li>
@@ -151,9 +152,9 @@ const Left = () => {
 
     const TaskItems1 = ({ to, Icon, Title, id, NOFTask, selectedDiv, setselectedDiv }) => {
         return (
-            <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
+            <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md dark:bg-gray-700 dark:hover:bg-gray-900 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
                 <Link to={to} className="flex items-center justify-between w-full text-inherit">
-                    <p className="flex items-center gap-3 text-gray-500 text-[20px] font-semibold ">{Icon}{Title} </p>
+                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-[20px] font-semibold ">{Icon}{Title} </p>
                 </Link>
             </li>
         )
@@ -166,19 +167,20 @@ const Left = () => {
             }
         }
         return (
-            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-[20px] font-semibold w-full m-2 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={handleClick}>{Icon}{Title}</button>
+            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-[20px] font-semibold w-full m-2 dark:bg-gray-700 dark:text-white ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300`} onClick={handleClick}>{Icon}{Title}</button>
         )
     }
 
     const SideBar = () => {
         return (
             <>
-                <div className={`flex flex-col mt-3 max-lg:inline-block gap-5   text-gray-600 ${Hide ? "inline-block" : "hidden"} `} >
-                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-2xl cursor-pointer mb-3 " />
-                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-2xl mb-3 " /></Link>
-                    <Link to="/Today" ><FaListCheck className="text-2xl mb-3 " /></Link>
-                    <Link to="/Calendar" ><FaCalendarAlt className="text-2xl mb-3" /></Link>
-                    <Link to="/StickyWall" ><FaNoteSticky className="text-2xl mb-3 " /></Link>
+                <div className={`flex flex-col mt-3 max-lg:inline-block gap-5   text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
+                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 " />
+                    <DarkModeToggle className="" />
+                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 " /></Link>
+                    <Link to="/Today" ><FaListCheck className="text-3xl mb-3 " /></Link>
+                    <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3" /></Link>
+                    <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link>
                 </div>
             </>
         )
@@ -191,22 +193,27 @@ const Left = () => {
             <div className="" >
                 <SideBar />
                 <div className={`left w-[20vw] p-3 sticky h-[99dvh] max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
-                    <div className=" bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] w-full ">
+                    <div className=" bg-[#f4f4f4] dark:bg-gray-800 min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] w-full ">
                         <div className="flex flex-col gap-5 w-full ">
                             <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
-                                <h1 className="text-2xl font-bold text-gray-600" >Menu</h1>
-                                <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu onClick={() => setHide(!Hide)} /></span>
+                                <h1 className="text-2xl font-bold text-gray-600 dark:text-gray-200" >Menu</h1>
+                                <div className="flex items-center gap-2">
+                                    <DarkModeToggle />
+                                    <span className="text-[25px] text-gray-500 dark:text-gray-300 cursor-pointer" >
+                                        <RxHamburgerMenu onClick={() => setHide(!Hide)} />
+                                    </span>
+                                </div>
                             </div>
                             <div className="flex relative " >
-                                <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold"
+                                <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200  text-lg font-semibold"
                                 value={Query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 />
                                 <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
                             </div>
                             <div className=" mt-4" >
-                                <h2 className="font-bold text-gray-600" >TASKS</h2>
-                                <ul className="ml-2 mt-3  flex flex-col gap-3 " >
+                                <h2 className="font-bold text-gray-600 dark:text-white " >TASKS</h2>
+                                <ul className="ml-2 mt-3  flex flex-col gap-3 dark:text-white " >
                                     <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems to={"/Today"} id={2} NOFTask={filteredTask.length} Icon={<FaListCheck />} Title="Today" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems1 to="/Calendar" id={3} NOFTask={null} Icon={<FaCalendarAlt />} Title="Calendar" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
@@ -215,7 +222,7 @@ const Left = () => {
                             </div>
                             <hr className=" border-t-[2px] border-gray-200" />
                             <div className="w-full" >
-                                <h3 className="font-bold text-gray-600 text-lg" >Videos</h3>
+                                <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
                                 <div className="h-[340px] overflow-auto w-full" >
                                     <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
@@ -230,7 +237,7 @@ const Left = () => {
                                     </ul>
                                 </div>
                                 <AddNewListButton onClick={() => setIsModalOpen(true)}
-                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500" />} />
+                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
                             </div>
                             {/* <hr className=" border-t-[2px] border-gray-200" /> */}
 

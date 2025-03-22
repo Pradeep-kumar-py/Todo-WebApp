@@ -24,11 +24,11 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body min-h-[100dvh] flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200">
-          <div className='min-h-[100dvh]'>
+        <div className="body min-h-[100svh] flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200">
+          <div className='min-h-[100svh]'>
             <Left />
           </div>
-          <div className={`right w-[79dvw] min-h-[100dvh] max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>
+          <div className={`right w-[79dvw] min-h-[100svh] max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

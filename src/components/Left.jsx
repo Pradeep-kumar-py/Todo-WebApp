@@ -15,6 +15,8 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { list } from "postcss";
 import { GiHidden } from "react-icons/gi";
+import AddNewListModal from "./AddNewListModal";
+
 const uniqueID = uuidv4();
 // import './index.css'
 
@@ -24,12 +26,31 @@ const Left = () => {
     const { checkBox, setcheckBox } = useContext(TodoContext)
     const { Lists, setLists } = useContext(TodoContext)
     const { Hide, setHide } = useContext(TodoContext)
-    // const [Hide, setHide] = useState(false)
-
+    console.log("Lists", Lists)
+    const [selectedDiv, setselectedDiv] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [Query, setQuery] = useState("")
+    const [FilteredVideo, setFilteredVideo] = useState([])
     // Filter TaskBox for tasks with title "today"
     const todayTask = TaskBox.filter(task =>
         task.TaskBoxTitle.toLowerCase() === "today"
     );
+
+    const searchVideo = () => {
+        const SearchTask = Lists.filter(list =>
+            list.name.toLowerCase().includes(Query.toLowerCase())
+        )
+        setFilteredVideo(SearchTask)
+    }
+
+    useEffect(() => {
+        searchVideo();
+    }, [Query,Lists]);
+
+    // Lists.push(SearchTask)
+    console.log("query", Query)
+    // console.log("SearchTask", SearchTask)
+
 
 
 
@@ -41,64 +62,59 @@ const Left = () => {
     console.log("filtered task", filteredTask);
 
     // console.log("today filtered task", TodayFilteredTask.length)
-    const [selectedDiv, setselectedDiv] = useState(null)
-    // const [Lists, setLists] = useState([])
-    // const [Lists, setLists] = useState(() => {
-    //     const savedItems = localStorage.getItem('TodoListData');
-    //     return savedItems ? JSON.parse(savedItems) : []; // Initialize with localStorage data or empty array
-    // });
 
-
-    //Save items to local storage whenever the list changes
-
-    // useEffect(() => {
-    //     console.log('Saving to localStorage:', Lists);
-    //     localStorage.setItem('TodoListData', JSON.stringify(Lists))
-    // }, [Lists])
-
-
-    // const handleAddNewLIst = () => {
+    // const handleAddNewList = () => {
     //     const name = prompt('Enter the title of New List: ');
-    //     const SiteUrl = prompt("Enter url: ")
+    //     const SiteUrl = prompt("Enter URL: ");
 
     //     if (name && SiteUrl) {
-    //         const newList = { id: Date.now(), name, SiteUrl }
-    //         setLists((prevLists) => [...prevLists, newList])
-    //         console.log("Add new list:", newList)
+    //         try {
+    //             const url = new URL(SiteUrl);
+    //             let embedUrl = SiteUrl;
+
+    //             // Example logic: Convert YouTube video URLs to embed format
+    //             if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
+    //                 const videoId = url.searchParams.get("v");
+    //                 if (videoId) {
+    //                     embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    //                 }
+    //             } else if (url.hostname === "youtu.be") {
+    //                 // Handle shortened YouTube URLs
+    //                 embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+    //             }
+
+    //             const newList = { id: Date.now(), name, SiteUrl: embedUrl };
+    //             setLists((prevLists) => [...prevLists, newList]);
+    //             console.log("Added new list:", newList);
+    //         } catch (error) {
+    //             console.error("Invalid URL format:", error);
+    //             alert("Please enter a valid URL.");
+    //         }
     //     }
-    // }
+    // };
 
-    const handleAddNewList = () => {
-        const name = prompt('Enter the title of New List: ');
-        const SiteUrl = prompt("Enter URL: ");
+    const handleAddNewList = (name, SiteUrl) => {
+        try {
+            const url = new URL(SiteUrl);
+            let embedUrl = SiteUrl;
 
-        if (name && SiteUrl) {
-            try {
-                const url = new URL(SiteUrl);
-                let embedUrl = SiteUrl;
-
-                // Example logic: Convert YouTube video URLs to embed format
-                if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
-                    const videoId = url.searchParams.get("v");
-                    if (videoId) {
-                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                    }
-                } else if (url.hostname === "youtu.be") {
-                    // Handle shortened YouTube URLs
-                    embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+            if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
+                const videoId = url.searchParams.get("v");
+                if (videoId) {
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
                 }
-
-                const newList = { id: Date.now(), name, SiteUrl: embedUrl };
-                setLists((prevLists) => [...prevLists, newList]);
-                console.log("Added new list:", newList);
-            } catch (error) {
-                console.error("Invalid URL format:", error);
-                alert("Please enter a valid URL.");
+            } else if (url.hostname === "youtu.be") {
+                embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
             }
+
+            const newList = { id: Date.now(), name, SiteUrl: embedUrl };
+            setLists((prevLists) => [...prevLists, newList]);
+            console.log("Added new list:", newList);
+        } catch (error) {
+            console.error("Invalid URL format:", error);
+            alert("Please enter a valid URL.");
         }
     };
-
-
 
     const handleDeleteSite = (id) => {
         setLists((previousSite) => previousSite.filter(list => list.id != id))
@@ -119,11 +135,11 @@ const Left = () => {
     }
     const ListItems = ({ id, NOFTask, name, onAddNew, to }) => {
         return (
-            <li className={`${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
-                <Link to={to} className="flex items-center gap-1 justify-between p-[5px] w-[100%]  box-border rounded-md cursor-pointer" >
-                    <div className="flex items-center gap-2 relative">
-                        <div className="h-4 w-4 bg-red-500 rounded-[4px] " ></div>
-                        <p className="text-lg font-semibold text-gray-500 w-[220px] overflow-hidden " >{name}</p>
+            <li className={` w-full ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
+                <Link to={to} className="flex w-full items-center gap-1 p-[5px] border-2 rounded-md cursor-pointer" >
+                    <div className="flex items-center gap-2 w-full ">
+                        <span className="h-4 w-4 bg-red-500 rounded-[4px] " ></span>
+                        <span className="text-lg font-semibold text-gray-500 w-[160px] overflow-clip " >{name}</span>
                     </div>
                     <button className={` flex items-center justify-center`} >
                         <RxCross2 className="cursor-pointer text-xl text-gray-600 " onClick={() => handleDeleteSite(id)} />
@@ -150,7 +166,7 @@ const Left = () => {
             }
         }
         return (
-            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-[20px] font-semibold  ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={handleClick}>{Icon}{Title}</button>
+            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-[20px] font-semibold w-full m-2 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={handleClick}>{Icon}{Title}</button>
         )
     }
 
@@ -174,15 +190,18 @@ const Left = () => {
         <>
             <div className="" >
                 <SideBar />
-                <div className={`left w-[20vw] border-2 sticky h-[99dvh] max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
-                    <div className="m-3 bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] ">
-                        <div className="flex flex-col gap-5 ">
+                <div className={`left w-[20vw] p-3 sticky h-[99dvh] max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
+                    <div className=" bg-[#f4f4f4] min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] w-full ">
+                        <div className="flex flex-col gap-5 w-full ">
                             <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
                                 <h1 className="text-2xl font-bold text-gray-600" >Menu</h1>
                                 <span className="text-[25px] text-gray-500 cursor-pointer" ><RxHamburgerMenu onClick={() => setHide(!Hide)} /></span>
                             </div>
                             <div className="flex relative " >
-                                <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold" />
+                                <input type="text" placeholder='Search' className=" bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 text-lg font-semibold"
+                                value={Query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                />
                                 <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
                             </div>
                             <div className=" mt-4" >
@@ -191,27 +210,32 @@ const Left = () => {
                                     <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems to={"/Today"} id={2} NOFTask={filteredTask.length} Icon={<FaListCheck />} Title="Today" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems1 to="/Calendar" id={3} NOFTask={null} Icon={<FaCalendarAlt />} Title="Calendar" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
-                                    <TaskItems1 to="/StickyWall" id={4} NOFTask={null} Icon={<FaNoteSticky />} Title="Sticky Wall" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
+                                    {/* <TaskItems1 to="/StickyWall" id={4} NOFTask={null} Icon={<FaNoteSticky />} Title="Sticky Wall" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} /> */}
                                 </ul>
                             </div>
                             <hr className=" border-t-[2px] border-gray-200" />
-                            <div className="" >
-                                <h3 className="font-bold text-gray-600" >LISTS</h3>
-                                <div className="max-h-[200px] overflow-auto">
-                                    <ul className="ml-[15px] mt-3  flex flex-col gap-3 overflow-x-hidden " >
-                                        <ListItems id={5} name="Personel" NOFTask={12} />
+                            <div className="w-full" >
+                                <h3 className="font-bold text-gray-600 text-lg" >Videos</h3>
+                                <div className="h-[340px] overflow-auto w-full" >
+                                    <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >
+                                        {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
 
-                                        {Lists.map((site) => (
-                                            <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} NOFTask={null} />
+                                        {/* {Lists.map((site) => (
+                                            <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
+                                        ))} */}
+                                        {FilteredVideo.map((site) => (
+
+                                            <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
                                         ))}
-                                        <AddNewListButton onClick={handleAddNewList} id={6} Title={"Add New List"} Icon={<MdAdd className="text-[25px] text-gray-500" />} />
                                     </ul>
                                 </div>
+                                <AddNewListButton onClick={() => setIsModalOpen(true)}
+                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500" />} />
                             </div>
-                            <hr className=" border-t-[2px] border-gray-200" />
+                            {/* <hr className=" border-t-[2px] border-gray-200" /> */}
 
                         </div>
-                        <div className="footer ml-3 mb-3 flex flex-col gap-3">
+                        {/* <div className="footer ml-3 mb-3 flex flex-col gap-3">
                             <div>
                                 <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 7 ? 'bg-gray-200' : 'bg-gray-100'}  transition-all duration-300`} onClick={() => setselectedDiv(7)}><IoSettings />Settings</div>
                             </div>
@@ -219,10 +243,15 @@ const Left = () => {
                                 <div className={`flex items-center gap-4 text-gray-500 font-semibold p-[5px] box-border rounded-md cursor-pointer  hover:bg-gray-200 ${selectedDiv === 8 ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300 `} onClick={() => setselectedDiv(8)}><FaSignOutAlt />Log out</div>
                             </div>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
+            <AddNewListModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSave={handleAddNewList}
+            />
         </>
     )
 

@@ -238,7 +238,7 @@ const Upcoming = () => {
     return (
         <>
             <div className={`h-[99vh] overflow-hidden w-full ml-2 `} >
-                <div className='flex justify-between items-center m-3 '>
+                <div className='flex justify-between items-center m-3  '>
                     <div className='flex items-center gap-5'>
                         <div className='text-5xl font-bold max-md:text-2xl ' >Upcoming</div>
                         <span className='h-12 max-md:h-8 max-md:w-8 w-12  flex items-center justify-center text-4xl max-md:text-2xl font-semibold border-2 rounded-md' >{checkBox.length}</span>
@@ -247,7 +247,7 @@ const Upcoming = () => {
                         Add List
                     </div>
                 </div>
-                <hr class="border-1 border-gray-600"></hr>
+                <hr class="border-1 border-gray-600 mb-2"></hr>
                 <div class="grid grid-cols-2 max-sm:grid-cols-1 grid-flow-row auto-rows-max gap-4 max-lg:scrollbar-hide m h-[90vh]  overflow-y-auto " >
                     {TaskBox.map((box) => (
                         <NewList

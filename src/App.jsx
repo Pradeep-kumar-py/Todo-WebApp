@@ -14,6 +14,7 @@ import WebViewer from './components/WebViewer.jsx';
 
 
 
+
 export default function App() {
   const {Hide, setHide} = useContext(TodoContext)
   console.log(Hide)
@@ -21,16 +22,14 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body   min-h-[99vh] flex gap-1  ">
-          
+        <div className="body min-h-[99vh] flex gap-1  "> 
             <Left />
-          
-          <div className={`right w-[79vw]  h-[99dvh] max-md:w-[88dvw] max-lg:w-[94dvw]   ${Hide? "w-[100dvw]": "w-[79vw]" } `}>
+          <div className={`right w-[79vw]  h-[99dvh] max-md:w-[88dvw] max-lg:w-[94dvw]   ${Hide? "w-full": "w-[79vw]" } `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />
               <Route path="/Calendar" element={<Calendar />} />
-              <Route path="/StickyWall" element={<StickyWall />} />
+              {/* <Route path="/StickyWall" element={<StickyWall />} /> */}
               <Route path="/web/:site" element={<WebViewer />} />
               
             </Routes>

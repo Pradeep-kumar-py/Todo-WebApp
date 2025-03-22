@@ -3,6 +3,13 @@
     margin: 0;
 }
 
+
+.your-container {
+    height: calc(var(--vh) * 100);
+    overflow: hidden; /* Prevent extra scrolling */
+  }
+  
+
 /* Dark mode styles for React Big Calendar */
 .dark .rbc-toolbar button {
     color: white !important;

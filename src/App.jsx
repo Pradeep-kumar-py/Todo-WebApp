@@ -9,10 +9,11 @@ import Today from './components/Today';
 import Calendar from './components/Calendar';
 import StickyWall from './components/StickyWall';
 import WebViewer from './components/WebViewer.jsx';
+import useViewportHeight from './components/viewPort.jsx';
 
 export default function App() {
   const { Hide, setHide } = useContext(TodoContext)
-
+  useViewportHeight();
   // Apply dark mode class on initial load
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body min-h-[100svh] flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200">
+        <div className="your-container body min-h-[100svh] flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200">
           <div className='min-h-[100svh]'>
             <Left />
           </div>

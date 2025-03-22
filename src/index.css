@@ -15,7 +15,7 @@
     height: calc(var(--vh, 1vh) * 100);
   }
   
-  @layer utilities {
+@layer utilities {
     .h-screen-fixed {
       height: calc(var(--vh, 1vh) * 100);
     }

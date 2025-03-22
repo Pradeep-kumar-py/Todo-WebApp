@@ -25,7 +25,7 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="your-container body  flex gap-1 bg-white dark:bg-gray-900 transition-colors duration-200">
+        <div className="your-container body  flex gap-1 bg-white overflow-x-hidden dark:bg-gray-900 transition-colors duration-200">
           <div className='min-h-[100svh]'>
             <Left />
           </div>

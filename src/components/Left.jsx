@@ -211,9 +211,9 @@ const Left = () => {
                                 />
                                 <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
                             </div>
-                            <div className=" mt-4" >
+                            <div className=" mt-4 flex flex-col items-center" >
                                 <h2 className="font-bold text-gray-600 dark:text-white " >TASKS</h2>
-                                <ul className="ml-2 mt-3  flex flex-col gap-3 dark:text-white " >
+                                <ul className="ml-2 mt-3 w-full flex flex-col gap-3 dark:text-white " >
                                     <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems to={"/Today"} id={2} NOFTask={filteredTask.length} Icon={<FaListCheck />} Title="Today" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
                                     <TaskItems1 to="/Calendar" id={3} NOFTask={null} Icon={<FaCalendarAlt />} Title="Calendar" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
@@ -221,7 +221,7 @@ const Left = () => {
                                 </ul>
                             </div>
                             <hr className=" border-t-[2px] border-gray-200" />
-                            <div className="w-full" >
+                            <div className="w-full flex flex-col items-center" >
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
                                 <div className="h-[40dvh] overflow-auto w-full" >
                                     <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >

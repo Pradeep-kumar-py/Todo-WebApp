@@ -150,7 +150,7 @@ const Today = () => {
 
     return (
       <>
-        <div className={`flex gap-3 mt-2 items-center h-11 border-2 dark:border-gray-700 rounded-md pl-2 w-full ${checked ?"bg-gray-200 line-through dark:bg-gray-700" : ""} `} >
+        <div className={`flex gap-3 mt-2 items-center h-11 border-2 dark:border-gray-700 rounded-md pl-2 w-full ${checked ? "bg-gray-200 line-through dark:bg-gray-700" : ""} `} >
           {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none  dark:bg-gray-700 dark:text-white " />) : (
             <>
               <div className="flex items-center justify-between w-full  " >
@@ -179,7 +179,55 @@ const Today = () => {
     <>
       <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 pt-1 pb-1 w-[] rounded-xl m-auto dark:bg-gray-700 dark:text-white " >Today Task</div>
 
-      {todayTask.length === 0 && <div className="text-lg font-bold flex justify-center mt-3 text-gray-500 pt-1 pb-1 w-[] rounded-xl m-auto  dark:text-white " >Task: Add a list with the title <b className='ml-3 mr-3'>Today</b> in Upcoming✅</div>}
+      {todayTask.length === 0 && (
+        <div className="flex flex-col items-center justify-center mx-auto my-10 max-w-xl p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col items-center mb-6">
+            <svg className="w-20 h-20 text-gray-400 dark:text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <h2 className="text-xl font-bold mb-2 text-gray-700 dark:text-white">No Today Tasks Found</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+              To get started with your daily planning, you need to create a list specifically for today's tasks.
+            </p>
+          </div>
+
+          <div className="flex flex-col w-full space-y-4 mb-4">
+            <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+              <div className="flex justify-center items-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </div>
+              <span>Go to the <span className="font-semibold">Upcoming</span> section</span>
+            </div>
+
+            <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+              <div className="flex justify-center items-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </div>
+              <span>Click on <span className="font-semibold">New List</span> button</span>
+            </div>
+
+            <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+              <div className="flex justify-center items-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+              </div>
+              <span>Name your list exactly <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 font-bold rounded">Today</span></span>
+            </div>
+          </div>
+
+          <div className="mt-2 flex items-center text-blue-600 dark:text-blue-400 font-medium">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Your tasks will automatically appear here</span>
+          </div>
+        </div>
+      )}
       {todayTask.map(box => (
         <NewList
           key={box.id}

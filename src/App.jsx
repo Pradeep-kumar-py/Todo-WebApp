@@ -24,7 +24,7 @@ export default function App() {
     <>
       <Router>
         <div className="body flex gap-1 h-[100lvh] bg-white overflow-x-hidden dark:bg-gray-900 transition-colors duration-200">
-          <div className='h-[100lvh]'>
+          <div className='h-[99lvh]'>
             <Left />
           </div>
           <div className={`right w-[79dvw] h-[100lvh]  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>

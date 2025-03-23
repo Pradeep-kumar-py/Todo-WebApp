@@ -46,7 +46,7 @@ const Left = () => {
 
     useEffect(() => {
         searchVideo();
-    }, [Query,Lists]);
+    }, [Query, Lists]);
 
     // Lists.push(SearchTask)
     console.log("query", Query)
@@ -190,11 +190,11 @@ const Left = () => {
 
     return (
         <>
-            <div className="" >
+            <div className="h-full" >
                 <SideBar />
-                <div className={`left w-[20dvw] p-3 max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
-                    <div className=" bg-[#f4f4f4] dark:bg-gray-800 min-h-[97%] p-3 flex flex-col  justify-between rounded-[15px] w-full ">
-                        <div className="flex flex-col gap-5 w-full ">
+                <div className={`left w-[20dvw] h-full overflow-hidden p-2 pb-0 max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
+                    <div className=" bg-[#f4f4f4] dark:bg-gray-800  h-full p-3 flex flex-col  justify-between rounded-[15px] w-full ">
+                        <div className="flex flex-col gap-5 h-full w-full ">
                             <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
                                 <h1 className="text-2xl font-bold text-gray-600 dark:text-gray-200" >Menu</h1>
                                 <div className="flex items-center gap-2">
@@ -204,10 +204,10 @@ const Left = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex relative " >
+                            <div className="flex " >
                                 <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 dark:border-gray-600 text-lg font-semibold"
-                                value={Query}
-                                onChange={(e) => setQuery(e.target.value)}
+                                    value={Query}
+                                    onChange={(e) => setQuery(e.target.value)}
                                 />
                                 <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
                             </div>
@@ -221,23 +221,23 @@ const Left = () => {
                                 </ul>
                             </div>
                             <hr className=" border-t-[2px] border-gray-200 dark:border-gray-500" />
-                            <div className="w-full flex flex-col items-center" >
+                            <div className="w-full flex flex-col  items-center" >
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
-                                <div className="h-[40dvh] overflow-auto w-full" >
+                                <AddNewListButton onClick={() => setIsModalOpen(true)}
+                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
+                                <div className="max-h-[40dvh] overflow-auto w-full" >
                                     <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
 
                                         {/* {Lists.map((site) => (
                                             <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
-                                        ))} */}
+                                            ))} */}
                                         {FilteredVideo.map((site) => (
 
                                             <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
                                         ))}
                                     </ul>
                                 </div>
-                                <AddNewListButton onClick={() => setIsModalOpen(true)}
-                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
                             </div>
                             {/* <hr className=" border-t-[2px] border-gray-200" /> */}
 

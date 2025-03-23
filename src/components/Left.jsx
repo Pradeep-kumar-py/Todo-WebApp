@@ -192,7 +192,7 @@ const Left = () => {
         <>
             <div className="h-full" >
                 <SideBar />
-                <div className={`left w-[20dvw] h-full overflow-hidden p-2 pb-0 max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
+                <div className={`left w-[20dvw] h-full p-2 pb-0 max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
                     <div className=" bg-[#f4f4f4] dark:bg-gray-800  h-full p-3 flex flex-col  justify-between rounded-[15px] w-full ">
                         <div className="flex flex-col gap-5 h-full w-full ">
                             <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">

@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body flex gap-1 h-[100lvh] bg-white overflow-x-hidden dark:bg-gray-900 transition-colors duration-200">
+        <div className="body flex gap-1 h-[100lvh] overflow-x-hidden overflow-y-auto bg-white  dark:bg-gray-900 transition-colors duration-200">
           <div className='h-[99lvh]'>
             <Left />
           </div>

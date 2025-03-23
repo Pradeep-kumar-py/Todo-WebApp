@@ -178,10 +178,35 @@ const Upcoming = () => {
                         <span className='h-12 max-md:h-8 max-md:w-8 w-12 flex items-center justify-center text-4xl max-md:text-2xl font-semibold border-2 rounded-md dark:border-gray-600 dark:text-white' >{checkBox.length}</span>
                     </div>
                     <button className='w-24 max-md:w-18 h-12 max-md:h-9 bg-purple-400 dark:bg-gradient-to-r from-blue-700  to-purple-700 flex items-center justify-center rounded-lg text-lg font-semibold text-gray-700 dark:text-white cursor-pointer hover:bg-blue-300 dark:hover:bg-blue-600 transition-all duration-500' onClick={() => setIsModalOpen(true)} >
-                        Add List
+                        New List
                     </button>
                 </div>
                 <hr class="border-1 border-gray-600 mb-2"></hr>
+                {
+                   TaskBox.length === 0 && (
+                        <div className="flex flex-col items-center justify-center h-[70vh] w-full text-center px-4">
+                            <div className="mb-2 flex flex-col items-center">
+                                <svg className="w-24 h-24 text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                </svg>
+                                <h1 className="text-2xl font-bold mb-2 dark:text-white">Welcome  to  Your Todo</h1>
+                                <h2 className="text-lg font-bold  dark:text-white">No Lists Yet</h2>
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
+                                Create your first list to start organizing your tasks. Click the "Add List" button to get started.
+                            </p>
+                            <button 
+                                onClick={() => setIsModalOpen(true)}
+                                className="flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors duration-300 dark:bg-gradient-to-r from-blue-700 to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Create New List
+                            </button>
+                        </div>
+                )
+                }
                 <div class="grid grid-cols-2 max-sm:grid-cols-1 grid-flow-row auto-rows-max gap-4 max-lg:scrollbar-hide m h-[90vh] overflow-y-auto" >
                     {TaskBox.map((box) => (
                         <NewList

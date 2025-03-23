@@ -228,7 +228,35 @@ const Left = () => {
                                 <div className="max-h-[40dvh] overflow-auto w-full" >
                                     <ul className="mt-3 flex flex-col gap-3 w-full overflow-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
-
+                                        {Lists.length === 0 && (
+                                            <div className="flex flex-col items-center justify-center py-5 px-2 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                                                <svg className="w-16 h-16 text-gray-400 dark:text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">No Videos Available</h3>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400 text-center mb-3">Add your favorite tutorial videos for quick access</p>
+                                                <div className="flex flex-col text-xs text-gray-600 dark:text-gray-300 space-y-2 mt-1">
+                                                    <div className="flex items-center">
+                                                        <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                        </svg>
+                                                        <span>Click "Add New Video" button</span>
+                                                    </div>
+                                                    <div className="flex items-center">
+                                                        <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                        </svg>
+                                                        <span>Enter a descriptive title</span>
+                                                    </div>
+                                                    <div className="flex items-center">
+                                                        <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                                        </svg>
+                                                        <span>Paste YouTube URL</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
                                         {/* {Lists.map((site) => (
                                             <ListItems to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
                                             ))} */}

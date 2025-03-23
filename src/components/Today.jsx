@@ -84,6 +84,7 @@ const Today = () => {
     );
 
 
+
     const handleSave = () => {
       onSaveEdit(id, newTitle)
       setIsEditing(false);
@@ -177,6 +178,8 @@ const Today = () => {
   return (
     <>
       <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 pt-1 pb-1 w-[] rounded-xl m-auto dark:bg-gray-700 dark:text-white " >Today Task</div>
+
+      {todayTask.length === 0 && <div className="text-lg font-bold flex justify-center mt-3 text-gray-500 pt-1 pb-1 w-[] rounded-xl m-auto  dark:text-white " >Task: Add a list with the title <b className='ml-3 mr-3'>Today</b> in Upcoming✅</div>}
       {todayTask.map(box => (
         <NewList
           key={box.id}

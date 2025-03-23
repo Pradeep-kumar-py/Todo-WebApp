@@ -234,7 +234,7 @@ const Upcoming = () => {
                         <span className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center text-xl sm:text-2xl md:text-4xl font-semibold border-2 rounded-md dark:border-gray-600 dark:text-white">{checkBox.length}</span>
                     </div>
                     <button 
-                        className="w-full sm:w-auto px-4 py-2 sm:py-3 bg-purple-400 dark:bg-gradient-to-r from-blue-700 to-purple-700 rounded-lg text-base sm:text-lg font-semibold text-gray-700 dark:text-white cursor-pointer hover:bg-blue-300 dark:hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                        className="w-full sm:w-auto px-4 py-2 sm:py-3 bg-purple-500 dark:bg-gradient-to-r from-blue-700 to-purple-700 rounded-lg text-base sm:text-lg font-semibold text-white dark:text-white cursor-pointer hover:bg-purple-600 dark:hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
                         onClick={() => setIsModalOpen(true)}
                     >
                         New List

@@ -128,7 +128,7 @@ const Left = () => {
         return (
             <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md dark:bg-gray-700 dark:hover:bg-gray-900 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
                 <Link to={to} className="flex items-center justify-between w-full text-inherit">
-                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-[20px] font-semibold ">{Icon}{Title} </p>
+                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-lg font-semibold ">{Icon}{Title} </p>
                     <span className={`h-5 w-7 rounded-[4px] bg-gray-200 text-[12px] flex items-center justify-center font-semibold dark:bg-gray-900 dark:text-white ${selectedDiv === id ? 'bg-white' : 'bg-gray-200'} `} >{NOFTask}</span>
                 </Link>
             </li>
@@ -140,7 +140,7 @@ const Left = () => {
                 <Link to={to} className="flex w-full items-center gap-1 p-[5px] border-2 dark:border-gray-600 rounded-md cursor-pointer" >
                     <div className="flex items-center gap-2 w-full ">
                         <span className="h-4 w-4 bg-red-500 rounded-[4px] " ></span>
-                        <span className="text-lg font-semibold text-gray-500 dark:text-white w-[160px] overflow-clip " >{name}</span>
+                        <span className="text-md font-semibold text-gray-500 dark:text-white w-[10vw] overflow-clip " >{name}</span>
                     </div>
                     <button className={` flex items-center justify-center`} >
                         <RxCross2 className="cursor-pointer text-xl text-gray-600 dark:text-white " onClick={() => handleDeleteSite(id)} />
@@ -154,7 +154,7 @@ const Left = () => {
         return (
             <li className={`flex items-center justify-between cursor-pointer box-border p-[5px] rounded-md dark:bg-gray-700 dark:hover:bg-gray-900 ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)}>
                 <Link to={to} className="flex items-center justify-between w-full text-inherit">
-                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-[20px] font-semibold ">{Icon}{Title} </p>
+                    <p className="flex items-center gap-3 text-gray-500 dark:text-white text-lg font-semibold ">{Icon}{Title} </p>
                 </Link>
             </li>
         )
@@ -167,7 +167,7 @@ const Left = () => {
             }
         }
         return (
-            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-lg font-semibold w-full m-2 dark:bg-gray-700 dark:text-white ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300 `} onClick={handleClick}>{Icon}{Title}</button>
+            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-md font-semibold w-full m-2 dark:bg-gray-700 dark:text-white ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300 `} onClick={handleClick}>{Icon}{Title}</button>
         )
     }
 

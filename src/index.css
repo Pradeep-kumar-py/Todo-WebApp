@@ -7,17 +7,5 @@
     margin: 0;
 }
  
-:root {
-    --vh: 1vh;
-  }
-  
-.body {
-    height: calc(var(--vh, 1vh) * 100);
-  }
-  
-@layer utilities {
-    .h-screen-fixed {
-      height: calc(var(--vh, 1vh) * 100);
-    }
-  }
+
   

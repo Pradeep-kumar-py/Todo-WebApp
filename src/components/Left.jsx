@@ -180,7 +180,7 @@ const Left = () => {
                     <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 " /></Link>
                     <Link to="/Today" ><FaListCheck className="text-3xl mb-3 " /></Link>
                     <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3" /></Link>
-                    <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link>
+                    {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
                 </div>
             </>
         )

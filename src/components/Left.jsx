@@ -222,9 +222,9 @@ const Left = () => {
                             </div>
                             <hr className=" border-t-[2px] border-gray-200 dark:border-gray-500" />
                             <div className="w-full flex flex-col  items-center" >
-                                <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
+                                <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos/Website</h3>
                                 <AddNewListButton onClick={() => setIsModalOpen(true)}
-                                    id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
+                                    id={6} Title={"Add New Video/Website"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
                                 <div className="max-h-[35dvh] w-full overflow-y-auto" >
                                     <ul className="mt-3 flex flex-col gap-3 w-full overflow-y-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}

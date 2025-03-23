@@ -167,7 +167,7 @@ const Left = () => {
             }
         }
         return (
-            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-[20px] font-semibold w-full m-2 dark:bg-gray-700 dark:text-white ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300`} onClick={handleClick}>{Icon}{Title}</button>
+            <button className={`flex items-center cursor-pointer box-border p-[5px] rounded-md gap-3 text-gray-500 text-lg font-semibold w-full m-2 dark:bg-gray-700 dark:text-white ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300 `} onClick={handleClick}>{Icon}{Title}</button>
         )
     }
 

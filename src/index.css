@@ -6,3 +6,26 @@
     padding: 0;
     margin: 0;
 }
+/* Light Mode Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1; /* Light gray */
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f1f5f9; /* Light track */
+  }
+  
+  /* Dark Mode Scrollbar */
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #374151; /* Dark gray */
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    background-color: #1f2937; /* Dark track */
+  }
+  

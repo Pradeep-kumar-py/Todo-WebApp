@@ -226,7 +226,7 @@ const Left = () => {
                                 <AddNewListButton onClick={() => setIsModalOpen(true)}
                                     id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
                                 <div className="max-h-[40dvh] overflow-auto w-full" >
-                                    <ul className="mt-3  flex flex-col gap-3 w-full overflow-auto " >
+                                    <ul className="mt-3 flex flex-col gap-3 w-full overflow-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
 
                                         {/* {Lists.map((site) => (

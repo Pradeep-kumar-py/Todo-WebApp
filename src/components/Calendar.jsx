@@ -75,7 +75,7 @@ const MyBigCalendar = () => {
     
 
     return (
-        <div style={{ height: '500px', margin: '20px' }} >
+        <div style={{ height: '500px', margin: '20px' }}  >
             <h2 className="text-2xl font-bold w-40 m-auto font-serif " >Calendar</h2>
             <Calendar
                 localizer={localizer}

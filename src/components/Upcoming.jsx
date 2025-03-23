@@ -88,46 +88,81 @@ const Upcoming = () => {
         }
 
         return (
-            <div className={`w-[37dvw] min-w-[200px] border-2 border-gray-700 h-auto self-start p-4 relative rounded-md overflow-y-auto overflow-x-hidden max-lg:w-full dark:bg-gray-800 ${Hide ? "w-[45dvw]" : "w-[33.5]"} `} id={id} >
-                <h1 className='text-2xl max-md:text-lg max-lg:text-xl font-bold mb-2 flex items-center justify-between dark:text-white' >
+            <div className="w-full border-2 border-gray-300 dark:border-gray-700 rounded-md p-3 sm:p-4 self-start overflow-hidden flex flex-col h-auto dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-200" id={id}>
+                <h1 className="text-xl sm:text-2xl font-bold mb-3 flex items-center justify-between gap-2 dark:text-white">
                     {IsEditing ? (
-                        <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className="outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 dark:text-white dark:bg-gray-700 w-[85%]" />
-                    ) : (<span onClick={() => setIsEditing(true)} className="cursor-pointer break-words w-[90%]" >{TaskBoxTitle}</span>)}
-                    <p className="flex gap-2" > 
-                        <RxCross2 className="cursor-pointer dark:text-white" onClick={() => onDelete(id)} />
-                        <FiEdit className='text-[20px] cursor-pointer dark:text-white' onClick={() => setIsEditing(true)} />
-                    </p>
-                </h1>
-                <div className="flex border-2  w-full gap-4 font-semibold text-gray-500 dark:text-gray-300 h-10 md:h-11 items-center rounded-md dark:border-gray-600" >
-                    {IsAddingTask ? (
-                        <input type='text'
-                            value={newTaskName}
-                            onChange={(e) => setnewTaskName(e.target.value)}
-                            onBlur={handleAddTask} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleAddTask() }}
-                            placeholder='Enter new Task'
-                            autoFocus
-                            className="text-xl pl-2 outline-none w-full dark:bg-gray-700 dark:text-white"
+                        <input 
+                            type="text" 
+                            value={newTitle} 
+                            onChange={(e) => setnewTitle(e.target.value)} 
+                            onBlur={handleSave} 
+                            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleSave(); }}} 
+                            autoFocus 
+                            className="outline-none border-2 border-gray-300 dark:border-gray-600 rounded-md px-2 py-1 w-full text-gray-700 dark:text-white dark:bg-gray-700 focus:border-purple-400 dark:focus:border-purple-500" 
                         />
                     ) : (
-                        <div className={`flex w-full gap-4 pr-4 pl-1 font-semibold text-gray-500 dark:text-gray-300 items-center rounded-md justify-between`} >
-                            <button onClick={() => setIsAddingTask(true)} autoFocus className={`flex w-full gap-4 outline-none`}>
-                                <p className='flex gap-3' ><MdAdd className="text-[25px] text-gray-500 dark:text-gray-300" />Add New Task</p>
-                            </button>
-                            <BsThreeDots className={`cursor-pointer text-3xl`} />
-                        </div>
+                        <span 
+                            onClick={() => setIsEditing(true)} 
+                            className="cursor-pointer break-words overflow-hidden overflow-ellipsis w-full"
+                        >
+                            {TaskBoxTitle}
+                        </span>
+                    )}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                        <button 
+                            onClick={() => onDelete(id)} 
+                            className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Delete list"
+                        >
+                            <RxCross2 className="text-xl text-gray-600 dark:text-white" />
+                        </button>
+                        <button 
+                            onClick={() => setIsEditing(true)} 
+                            className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Edit list"
+                        >
+                            <FiEdit className="text-lg text-gray-600 dark:text-white" />
+                        </button>
+                    </div>
+                </h1>
+                <div className="flex border-2 border-gray-300 dark:border-gray-600 w-full font-semibold text-gray-500 dark:text-gray-300 h-12 items-center rounded-md mb-2">
+                    {IsAddingTask ? (
+                        <input 
+                            type="text"
+                            value={newTaskName}
+                            onChange={(e) => setnewTaskName(e.target.value)}
+                            onBlur={handleAddTask} 
+                            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddTask(); }}}
+                            placeholder="Enter new task"
+                            autoFocus
+                            className="h-full text-base sm:text-lg px-3 outline-none w-full rounded-md dark:bg-gray-700 dark:text-white"
+                        />
+                    ) : (
+                        <button 
+                            onClick={() => setIsAddingTask(true)} 
+                            className="flex w-full items-center justify-between px-3 py-2 h-full rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        >
+                            <div className="flex items-center gap-3">
+                                <MdAdd className="text-2xl text-gray-500 dark:text-gray-300" />
+                                <span className="text-gray-500 dark:text-gray-300">Add New Task</span>
+                            </div>
+                            <BsThreeDots className="text-2xl cursor-pointer text-gray-500 dark:text-gray-300" />
+                        </button>
                     )}
                 </div>
-                {taskForThisBox.map((task) => (
-                    <NewTask
-                        key={task.id}
-                        taskId={task.id}
-                        checked={task.checked}
-                        onToggle={handleCheckedTask}
-                        TaskName={task.TaskName}
-                        onEdit={(taskId, newName) => handleEditCheckBox(taskId, newName)}
-                        onDelete={handleDeleteCheckBox}
-                    />
-                ))}
+                <div className="flex-1 overflow-y-auto max-h-[60vh] space-y-2">
+                    {taskForThisBox.map((task) => (
+                        <NewTask
+                            key={task.id}
+                            taskId={task.id}
+                            checked={task.checked}
+                            onToggle={handleCheckedTask}
+                            TaskName={task.TaskName}
+                            onEdit={(taskId, newName) => handleEditCheckBox(taskId, newName)}
+                            onDelete={handleDeleteCheckBox}
+                        />
+                    ))}
+                </div>
             </div>
         )
     }
@@ -142,72 +177,96 @@ const Upcoming = () => {
         }
 
         return (
-            <>
-                <div className={`flex-1 gap-3 mt-2 items-center pt-1 pb-1 pr-1 border-2 dark:border-gray-700 rounded-md pl-2 w-full ${checked ? "bg-gray-200 line-through dark:bg-gray-700" : ""} `} >
-                    {IsEditing ? (<input type='text' value={newName} onChange={(e) => setnewName(e.target.value)} onBlur={handleSaveEdit} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(), handleSaveEdit() } }} autoFocus className="outline-none dark:bg-gray-700 dark:text-white" />) : (
-                        <>
-                            <div className="flex items-center justify-between w-full" >
-                                <label for="taskId" className="flex gap-3 break-normal overflow-hidden dark:text-white" >
-                                    <input
-                                        type="checkbox"
-                                        id={taskId}
-                                        checked={checked}
-                                        onChange={() => onToggle(taskId)}
-                                        className="cursor-pointer break-words"
-                                    />
-                                    {TaskName}
-                                </label>
-                                <p className="flex gap-2" > 
-                                    <RxCross2 className="cursor-pointer text-2xl dark:text-white" onClick={() => onDelete(taskId)} />
-                                    <FiEdit className='text-[20px] cursor-pointer dark:text-white' onClick={() => setIsEditing(true)} />
-                                </p>
-                            </div>
-                        </>
-                    )}
-                </div>
-            </>
+            <div className={`flex items-center gap-2 p-2 border-2 dark:border-gray-700 rounded-md w-full ${checked ? "bg-gray-200 dark:bg-gray-700" : ""}`}>
+                {IsEditing ? (
+                    <input 
+                        type="text" 
+                        value={newName} 
+                        onChange={(e) => setnewName(e.target.value)} 
+                        onBlur={handleSaveEdit} 
+                        onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleSaveEdit(); }}} 
+                        autoFocus 
+                        className="outline-none w-full px-2 py-1 dark:bg-gray-700 dark:text-white" 
+                    />
+                ) : (
+                    <div className="flex items-center justify-between w-full">
+                        <label 
+                            htmlFor={`task-${taskId}`} 
+                            className={`flex items-center gap-3 w-full cursor-pointer dark:text-white ${checked ? "line-through text-gray-500 dark:text-gray-400" : ""}`}
+                        >
+                            <input
+                                type="checkbox"
+                                id={`task-${taskId}`}
+                                checked={checked}
+                                onChange={() => onToggle(taskId)}
+                                className="h-4 w-4 cursor-pointer accent-purple-500 dark:bg-gray-700"
+                            />
+                            <span className="break-words overflow-hidden overflow-ellipsis">{TaskName}</span>
+                        </label>
+                        <div className="flex items-center gap-1 flex-shrink-0">
+                            <button 
+                                onClick={() => onDelete(taskId)} 
+                                className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                aria-label="Delete task"
+                            >
+                                <RxCross2 className="text-xl text-gray-600 dark:text-white" />
+                            </button>
+                            <button 
+                                onClick={() => setIsEditing(true)} 
+                                className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                aria-label="Edit task"
+                            >
+                                <FiEdit className="text-lg text-gray-600 dark:text-white" />
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
         )
     }
 
     return (
         <>
-            <div className={`h-[99vh] overflow-hidden w-full ml-2`} >
-                <div className='flex justify-between items-center m-3'>
-                    <div className='flex items-center gap-5'>
-                        <div className='text-5xl font-bold max-md:text-2xl dark:text-white' >Upcoming</div>
-                        <span className='h-12 max-md:h-8 max-md:w-8 w-12 flex items-center justify-center text-4xl max-md:text-2xl font-semibold border-2 rounded-md dark:border-gray-600 dark:text-white' >{checkBox.length}</span>
+            <div className="h-full min-h-[90vh] w-full px-2 sm:px-4 md:px-6 overflow-y-auto">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 my-4 sm:my-6">
+                    <div className="flex items-center gap-3 sm:gap-5">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold dark:text-white">Upcoming</h1>
+                        <span className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center text-xl sm:text-2xl md:text-4xl font-semibold border-2 rounded-md dark:border-gray-600 dark:text-white">{checkBox.length}</span>
                     </div>
-                    <button className='w-24 max-md:w-18 h-12 max-md:h-9 bg-purple-400 dark:bg-gradient-to-r from-blue-700  to-purple-700 flex items-center justify-center rounded-lg text-lg font-semibold text-gray-700 dark:text-white cursor-pointer hover:bg-blue-300 dark:hover:bg-blue-600 transition-all duration-500' onClick={() => setIsModalOpen(true)} >
+                    <button 
+                        className="w-full sm:w-auto px-4 py-2 sm:py-3 bg-purple-400 dark:bg-gradient-to-r from-blue-700 to-purple-700 rounded-lg text-base sm:text-lg font-semibold text-gray-700 dark:text-white cursor-pointer hover:bg-blue-300 dark:hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                        onClick={() => setIsModalOpen(true)}
+                    >
                         New List
                     </button>
                 </div>
-                <hr class="border-1 border-gray-600 mb-2"></hr>
-                {
-                   TaskBox.length === 0 && (
-                        <div className="flex flex-col items-center justify-center h-[70vh] w-full text-center px-4">
-                            <div className="mb-2 flex flex-col items-center">
-                                <svg className="w-24 h-24 text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                                </svg>
-                                <h1 className="text-2xl font-bold mb-2 dark:text-white">Welcome  to  Your Todo</h1>
-                                <h2 className="text-lg font-bold  dark:text-white">No Lists Yet</h2>
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
-                                Create your first list to start organizing your tasks. Click the "Add List" button to get started.
-                            </p>
-                            <button 
-                                onClick={() => setIsModalOpen(true)}
-                                className="flex items-center gap-2 px-6 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors duration-300 dark:bg-gradient-to-r from-blue-700 to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
-                                Create New List
-                            </button>
+                <hr className="border-1 border-gray-300 dark:border-gray-600 mb-4 sm:mb-6"></hr>
+                
+                {TaskBox.length === 0 && (
+                    <div className="flex flex-col items-center justify-center h-[70vh] w-full text-center px-4 py-6">
+                        <div className="mb-4 flex flex-col items-center">
+                            <svg className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                            <h1 className="text-xl sm:text-2xl font-bold mb-2 dark:text-white">Welcome to Your Todo</h1>
+                            <h2 className="text-base sm:text-lg font-bold dark:text-white">No Lists Yet</h2>
                         </div>
-                )
-                }
-                <div class="grid grid-cols-2 max-sm:grid-cols-1 grid-flow-row auto-rows-max gap-4 max-lg:scrollbar-hide m h-[90vh] overflow-y-auto" >
+                        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-sm sm:max-w-md">
+                            Create your first list to start organizing your tasks. Click the "New List" button to get started.
+                        </p>
+                        <button 
+                            onClick={() => setIsModalOpen(true)}
+                            className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors duration-300 dark:bg-gradient-to-r from-blue-700 to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Create New List
+                        </button>
+                    </div>
+                )}
+                
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 overflow-auto h-auto pb-8">
                     {TaskBox.map((box) => (
                         <NewList
                             key={box.id}
@@ -215,7 +274,8 @@ const Upcoming = () => {
                             TaskBoxTitle={box.TaskBoxTitle}
                             onDelete={handleDeleteTaskBox}
                             onSaveEdit={handleSaveEditTaskBox}
-                            onAddTask={handleNewCheckBox} />
+                            onAddTask={handleNewCheckBox} 
+                        />
                     ))}
                 </div>
                 <Modal

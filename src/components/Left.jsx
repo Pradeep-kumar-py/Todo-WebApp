@@ -225,8 +225,8 @@ const Left = () => {
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
                                 <AddNewListButton onClick={() => setIsModalOpen(true)}
                                     id={6} Title={"Add New Video"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
-                                <div className="max-h-[40dvh] overflow-auto w-full" >
-                                    <ul className="mt-3 flex flex-col gap-3 w-full overflow-auto " >
+                                <div className="max-h-[35dvh] w-full overflow-y-auto" >
+                                    <ul className="mt-3 flex flex-col gap-3 w-full overflow-y-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
                                         {Lists.length === 0 && (
                                             <div className="flex flex-col items-center justify-center py-5 px-2 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">

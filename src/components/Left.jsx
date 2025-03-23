@@ -205,7 +205,7 @@ const Left = () => {
                                 </div>
                             </div>
                             <div className="flex relative " >
-                                <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200  text-lg font-semibold"
+                                <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 dark:border-gray-600 text-lg font-semibold"
                                 value={Query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 />
@@ -220,7 +220,7 @@ const Left = () => {
                                     {/* <TaskItems1 to="/StickyWall" id={4} NOFTask={null} Icon={<FaNoteSticky />} Title="Sticky Wall" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} /> */}
                                 </ul>
                             </div>
-                            <hr className=" border-t-[2px] border-gray-200" />
+                            <hr className=" border-t-[2px] border-gray-200 dark:border-gray-500" />
                             <div className="w-full flex flex-col items-center" >
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos</h3>
                                 <div className="h-[40dvh] overflow-auto w-full" >

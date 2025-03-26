@@ -30,7 +30,7 @@ const DarkModeToggle = () => {
       className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-300 transition-colors duration-200"
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      {darkMode ? <FiSun className="text-xl" /> : <FiMoon className="text-xl" />}
+      {darkMode ? <FiSun className="text-lg" /> : <FiMoon className="text-lg" />}
     </button>
   );
 };

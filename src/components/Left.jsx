@@ -194,12 +194,12 @@ const Left = () => {
     const SideBar = () => {
         return (
             <>
-                <div className={`flex flex-col mt-3 max-lg:inline-block gap-5   text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
-                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 " />
+                <div className={`flex flex-col items-center  mt-3 max-lg:inline-block gap-5 pl-1  text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
+                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 hover:text-gray-500 " />
                     <DarkModeToggle className="" />
-                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 " /></Link>
-                    <Link to="/Today" ><FaListCheck className="text-3xl mb-3 " /></Link>
-                    <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3" /></Link>
+                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 hover:text-gray-500" /></Link>
+                    <Link to="/Today" ><FaListCheck className="text-3xl mb-3 hover:text-gray-500 " /></Link>
+                    <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
                     {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
                 </div>
             </>
@@ -225,7 +225,7 @@ const Left = () => {
                                 </div>
                             </div>
                             <div id="secondDiv" className="flex relative " >
-                                <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 dark:border-gray-600 text-lg font-semibold"
+                                <input type="text" placeholder='Search' className=" dark:bg-gray-700 dark:text-white bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 dark:border-gray-600 text-lg font-semibold"
                                     value={Query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />

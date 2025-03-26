@@ -266,7 +266,7 @@ const Upcoming = () => {
                     </div>
                 )}
                 
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 overflow-auto h-auto pb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 h-auto pb-8">
                     {TaskBox.map((box) => (
                         <NewList
                             key={box.id}

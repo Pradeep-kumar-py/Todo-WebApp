@@ -23,11 +23,11 @@ export default function App() {
   return (
     <>
       <Router>
-        <div className="body flex gap-1 h-[100lvh] overflow-x-hidden overflow-y-auto bg-white  dark:bg-gray-900 transition-colors duration-200">
+        <div className="body flex gap-1 h-[100lvh] overflow-x-hidden overflow-y-hidden bg-white  dark:bg-gray-900 transition-colors duration-200">
           <div className='h-[99lvh]'>
             <Left />
           </div>
-          <div className={`right w-[79dvw] h-[100lvh] overflow-y-auto overflow-x-hidden  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 ${Hide ? "w-full" : "w-[79vw]"} `}>
+          <div className={`right w-[79dvw] h-[100lvh] overflow-x-hidden  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 transition-all duration-200 ease-in-out ${Hide ? "  w-full " : "w-[79vw]"} `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

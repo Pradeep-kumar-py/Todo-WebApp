@@ -99,7 +99,7 @@ const Today = () => {
     }
 
     return (
-      <div className='w-[75dvw] max-lg:w-[90dvw] border-2 m-5 h-auto  self-start p-4  relative  dark:border-gray-600  rounded-md overflow-auto' id={id} >
+      <div className='ml-6 mr-6 mb-4 m-auto border-2 mt-5 h-auto  p-4  relative  dark:border-gray-600  rounded-md overflow-auto' id={id} >
         <h1 className='text-2xl font-bold mb-2 flex items-center justify-between' >
           {IsEditing ? (
             <input type='text' value={newTitle} onChange={(e) => setnewTitle(e.target.value)} onBlur={handleSave} onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(), handleSave() }} autoFocus className=" outline-1 outline-gray-300 h-[4.5vh] rounded-md px-2 py-1 text-gray-700 dark:bg-gray-700 dark:text-white w-[85%]" />
@@ -177,7 +177,7 @@ const Today = () => {
 
   return (
     <>
-      <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 pt-1 pb-1 w-[] rounded-xl m-auto dark:bg-gray-700 dark:text-white " >Today Task</div>
+      <div className="text-3xl font-bold flex justify-center mt-3 text-gray-500 bg-gray-200 p-1 ml-3 mr-3  rounded-xl m-auto dark:bg-gray-700 dark:text-white " >Today Task</div>
 
       {todayTask.length === 0 && (
         <div className="flex flex-col items-center justify-center mx-auto my-10 max-w-xl p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
@@ -228,6 +228,7 @@ const Today = () => {
           </div>
         </div>
       )}
+      
       {todayTask.map(box => (
         <NewList
           key={box.id}

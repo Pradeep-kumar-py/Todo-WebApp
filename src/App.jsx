@@ -27,7 +27,7 @@ export default function App() {
           <div className='h-[99lvh]'>
             <Left />
           </div>
-          <div className={`right w-[79dvw] h-[100lvh] overflow-x-hidden  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 transition-all duration-200 ease-in-out ${Hide ? "  w-full " : "w-[79vw]"} `}>
+          <div className={`right w-[79dvw] h-[100lvh] overflow-x-hidden  max-md:w-[88dvw] max-lg:w-[94dvw] dark:text-gray-200 transition-all duration-200 ease-in-out ${Hide ? "w-full" : "w-[79vw]"} `}>
             <Routes>
               <Route path="/" element={<Upcoming />} />
               <Route path="/today" element={<Today />} />

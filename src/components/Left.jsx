@@ -53,6 +53,26 @@ const Left = () => {
     // console.log("SearchTask", SearchTask)
 
 
+    
+    // set dynamic height for dynamic content
+    const [height, setHeight] = useState(0);
+
+    useEffect(() => {
+        const updateHeight = () => {
+            const screenHeight = window.innerHeight;
+            const first = document.getElementById("firstDiv")?.offsetHeight || 0;
+            const second = document.getElementById("secondDiv")?.offsetHeight || 0;
+            const third = document.getElementById("secondDiv")?.offsetHeight || 0;
+            setHeight(screenHeight - (first + second + third));
+        };
+
+        updateHeight();
+        window.addEventListener("resize", updateHeight);
+        return () => window.removeEventListener("resize", updateHeight);
+    }, []);
+
+
+
 
 
     // Filter checkBox for tasks matching the IDs from todayTask
@@ -195,7 +215,7 @@ const Left = () => {
                 <div className={`left w-[20dvw] h-full p-2 pb-0 max-lg:hidden top-0 ${Hide ? "hidden" : "inline-block"} `}>
                     <div className=" bg-[#f4f4f4] dark:bg-gray-800  h-full p-3 flex flex-col  justify-between rounded-[15px] w-full ">
                         <div className="flex flex-col gap-5 h-full w-full ">
-                            <div className="flex items-center justify-between mt-[10px] ml-1 mr-1">
+                            <div id="firstDiv" className="flex items-center justify-between mt-[10px] ml-1 mr-1">
                                 <h1 className="text-2xl font-bold text-gray-600 dark:text-gray-200" >Menu</h1>
                                 <div className="flex items-center gap-2">
                                     <DarkModeToggle />
@@ -204,14 +224,14 @@ const Left = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex relative " >
+                            <div id="secondDiv" className="flex relative " >
                                 <input type="text" placeholder='Search' className=" dark:bg-gray-700 bg-gray-100 w-[100%] pl-10 h-[40px] outline-none rounded-md border-[2px] border-gray-200 dark:border-gray-600 text-lg font-semibold"
                                     value={Query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
                                 <IoSearch className=" absolute left-2 top-1/4 text-gray-500 text-[20px]  " />
                             </div>
-                            <div className=" mt-4 flex flex-col items-center" >
+                            <div id="thirdDiv" className=" mt-4 flex flex-col items-center" >
                                 <h2 className="font-bold text-gray-600 dark:text-white " >TASKS</h2>
                                 <ul className="ml-2 mt-3 w-full flex flex-col gap-3 dark:text-white " >
                                     <TaskItems to="/" id={1} NOFTask={checkBox.length} Icon={<MdKeyboardDoubleArrowRight className="text-[25px]" />} Title="Upcoming" selectedDiv={selectedDiv} setselectedDiv={setselectedDiv} />
@@ -221,11 +241,11 @@ const Left = () => {
                                 </ul>
                             </div>
                             <hr className=" border-t-[2px] border-gray-200 dark:border-gray-500" />
-                            <div className="w-full flex flex-col  items-center" >
+                            <div style={{ height, overflowX: "hidden" }} className="w-full flex flex-col  items-center" >
                                 <h3 className="font-bold text-gray-600 text-lg dark:text-white" >Videos/Website</h3>
                                 <AddNewListButton onClick={() => setIsModalOpen(true)}
                                     id={6} Title={"Add New Video/Website"} Icon={<MdAdd className="text-[25px] text-gray-500 dark:text-white" />} />
-                                <div className="max-h-[35dvh] w-full overflow-y-auto" >
+                                <div className="w-full overflow-y-auto" >
                                     <ul className="mt-3 flex flex-col gap-3 w-full overflow-y-auto " >
                                         {/* <ListItems id={5} name="Personel" NOFTask={12} /> */}
                                         {Lists.length === 0 && (

@@ -212,7 +212,7 @@ const Left = () => {
         <>
             <div className="h-full" >
                 <SideBar />
-                <div className={`left w-[20dvw] h-full p-2 pb-0 max-lg:hidden top-0${Hide ? "transform opacity-0 -translate-x-full w-[0px] overflow-hidden duration-200 ease-in-out" : "transform opacity-100 ease-in-out translate-x-0 duration-200"} `}>
+                <div className={`left w-[20dvw] h-full p-2 pb-0 max-lg:hidden top-0 ${Hide ? "transform opacity-0 -translate-x-full w-0 overflow-hidden duration-200 ease-in-out" : "transform opacity-100 ease-in-out translate-x-0 duration-200"} `}>
                     <div className=" bg-[#f4f4f4] dark:bg-gray-800  h-full p-3 flex flex-col  justify-between rounded-[15px] w-full ">
                         <div className="flex flex-col gap-5 h-full w-full ">
                             <div id="firstDiv" className="flex items-center justify-between mt-[10px] ml-1 mr-1">

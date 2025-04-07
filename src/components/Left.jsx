@@ -17,6 +17,7 @@ import { list } from "postcss";
 import { GiHidden } from "react-icons/gi";
 import AddNewListModal from "./AddNewListModal";
 import DarkModeToggle from "./DarkModeToggle";
+import ChatBot from "./chatbot";
 
 const uniqueID = uuidv4();
 // import './index.css'
@@ -201,6 +202,7 @@ const Left = () => {
                     <Link to="/Today" ><FaListCheck className="text-3xl mb-3 hover:text-gray-500 " /></Link>
                     <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
                     {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
+                    {/* <ChatBot/> */}
                 </div>
             </>
         )

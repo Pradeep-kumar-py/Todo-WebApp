@@ -187,17 +187,21 @@ const Left = () => {
     const SideBar = () => {
         return (
             <>
-                <div className={`flex flex-col items-center  mt-3 max-lg:inline-block overflow-y-hidden gap-5 pl-1  text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
-                    <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 hover:text-gray-500 " />
-                    <DarkModeToggle className="" />
-                    <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 hover:text-gray-500" /></Link>
-                    <Link to="/Today" ><FaListCheck className="text-3xl mb-3 hover:text-gray-500 " /></Link>
-                    <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
+                <div className={`flex flex-col items-center h-full  mt-3 max-lg:inline-block gap-3 pl-1  text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
+                    <div className="flex flex-col items-center  gap-2 " >
+                        <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 hover:text-gray-500 " />
+                        <DarkModeToggle />
+                        <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 hover:text-gray-500" /></Link>
+                        <Link to="/Today" ><FaListCheck className="text-3xl mb-3 hover:text-gray-500 " /></Link>
+                        <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
+                    </div>
                     {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
                     {/* <ChatBot/> */}
-                    {FilteredVideo.map((site) => (
-                        <VideoList to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
-                    ))}
+                    <div className="mt-3 flex flex-1 flex-col gap-2 scrollbar-hide  overflow-y-auto pb-4 " >
+                        {FilteredVideo.map((site) => (
+                            <VideoList to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
+                        ))}
+                    </div>
                 </div>
             </>
         )

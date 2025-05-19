@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { TodoContext } from "../TodoContext";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
@@ -185,27 +185,52 @@ const Left = () => {
     }
 
     const SideBar = () => {
+        const containerRef = useRef(null);
+        const [contentHeight, setContentHeight] = useState('calc(100% - 200px)');
+
+        useEffect(() => {
+            const updateHeight = () => {
+                if (containerRef.current) {
+                    const parentHeight = containerRef.current.offsetHeight;
+                    const iconsSection = containerRef.current.querySelector('div:first-child')?.offsetHeight || 0;
+                    // Calculate available space (subtract icon section height plus some padding)
+                    const availableHeight = parentHeight - iconsSection - 20;
+                    setContentHeight(`${availableHeight}px`);
+                }
+            };
+
+            updateHeight();
+            window.addEventListener('resize', updateHeight);
+            return () => window.removeEventListener('resize', updateHeight);
+        }, []);
+
         return (
             <>
-                <div className={`flex flex-col items-center h-full  mt-3 max-lg:inline-block gap-3 pl-1  text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
-                    <div className="flex flex-col items-center  gap-2 " >
+                <div ref={containerRef} className={`flex flex-col items-center h-full mt-3 max-lg:inline-block gap-3 pl-1 text-gray-600 dark:text-gray-300 ${Hide ? "inline-block" : "hidden"} `} >
+                    <div className="flex flex-col items-center gap-2">
                         <RxHamburgerMenu onClick={() => setHide(!Hide)} className="text-3xl cursor-pointer mb-3 hover:text-gray-500 " />
                         <DarkModeToggle />
                         <Link to="/" ><MdKeyboardDoubleArrowRight className="text-3xl mb-3 hover:text-gray-500" /></Link>
                         <Link to="/Today" ><FaListCheck className="text-3xl mb-3 hover:text-gray-500 " /></Link>
                         <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
+                        <button onClick={() => setIsModalOpen(true)} className="flex items-center justify-center cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-white rounded-md p-1 hover:bg-gray-200 dark:hover:bg-gray-900 transition-all duration-300">
+                            <MdAdd className="text-2xl" />
+                        </button>
                     </div>
-                    {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
-                    {/* <ChatBot/> */}
-                    <div className="mt-3 flex flex-1 flex-col gap-2 scrollbar-hide  overflow-y-auto pb-4 " >
+                    <div className="mt-3 flex flex-1 flex-col gap-2 overflow-y-auto pb-4 touch-auto" style={{
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        WebkitOverflowScrolling: 'touch',
+                        height: contentHeight
+                    }}>
                         {FilteredVideo.map((site) => (
                             <VideoList to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
                         ))}
                     </div>
                 </div>
             </>
-        )
-    }
+        );
+    };
 
 
 

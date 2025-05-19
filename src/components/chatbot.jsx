@@ -101,7 +101,7 @@ const ChatBot = () => {
         <div className="absolute bottom-0 right-0 w-80 sm:w-96 h-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300">
           {/* Chat Header */}
           <div className="bg-blue-600 text-white px-4 py-3 flex items-center justify-between">
-            <h3 className="font-medium flex items-center gap-2"><FaRegCommentDots /> Copilot Assistant</h3>
+            <h3 className="font-medium flex items-center gap-2"><FaRegCommentDots />Assistant</h3>
             <button
               onClick={toggleChatbot}
               className="text-white hover:text-gray-200 focus:outline-none"

@@ -8,11 +8,6 @@ const WebViewer = () => {
 
     const { Lists, setLists } = useContext(TodoContext)
 
-    // {Lists.map((site)=>{
-    //     const websiteMap = site.name;
-    //     const WebsiteUrl = site.SiteUrl;
-    // })}
-
     const website = Lists.find((item) => item.name.toLowerCase() === site.toLowerCase());
 
     if (!website) {
@@ -21,11 +16,13 @@ const WebViewer = () => {
     }
 
     return (
-        <div className="h-[99vh]">
+        <div className="h-[100vh]">
             <iframe
                 src={website.SiteUrl}
                 className="w-full h-full border-none"
                 title={website.name}
+                frameBorder={0}
+                allowFullScreen
             />
         </div>
     );

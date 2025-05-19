@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { TodoContext } from "../TodoContext";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
@@ -45,6 +45,17 @@ const Left = () => {
         setFilteredVideo(SearchTask)
     }
 
+
+    // Helper function to generate a random color
+    const getRandomColor = () => {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
     useEffect(() => {
         searchVideo();
     }, [Query, Lists]);
@@ -54,7 +65,7 @@ const Left = () => {
     // console.log("SearchTask", SearchTask)
 
 
-    
+
     // set dynamic height for dynamic content
     const [height, setHeight] = useState(0);
 
@@ -83,37 +94,7 @@ const Left = () => {
 
     console.log("filtered task", filteredTask);
 
-    // console.log("today filtered task", TodayFilteredTask.length)
 
-    // const handleAddNewList = () => {
-    //     const name = prompt('Enter the title of New List: ');
-    //     const SiteUrl = prompt("Enter URL: ");
-
-    //     if (name && SiteUrl) {
-    //         try {
-    //             const url = new URL(SiteUrl);
-    //             let embedUrl = SiteUrl;
-
-    //             // Example logic: Convert YouTube video URLs to embed format
-    //             if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
-    //                 const videoId = url.searchParams.get("v");
-    //                 if (videoId) {
-    //                     embedUrl = `https://www.youtube.com/embed/${videoId}`;
-    //                 }
-    //             } else if (url.hostname === "youtu.be") {
-    //                 // Handle shortened YouTube URLs
-    //                 embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
-    //             }
-
-    //             const newList = { id: Date.now(), name, SiteUrl: embedUrl };
-    //             setLists((prevLists) => [...prevLists, newList]);
-    //             console.log("Added new list:", newList);
-    //         } catch (error) {
-    //             console.error("Invalid URL format:", error);
-    //             alert("Please enter a valid URL.");
-    //         }
-    //     }
-    // };
 
     const handleAddNewList = (name, SiteUrl) => {
         try {
@@ -156,11 +137,12 @@ const Left = () => {
         )
     }
     const ListItems = ({ id, NOFTask, name, onAddNew, to }) => {
+        const randomColor = useMemo(() => getRandomColor(), [id]);
         return (
             <li className={` dark:bg-gray-700 dark:hover:bg-gray-900 rounded-md w-full ${selectedDiv === id ? 'bg-gray-200' : 'bg-gray-100'} hover:bg-gray-200 transition-all duration-300`} onClick={() => setselectedDiv(id)} >
                 <Link to={to} className="flex w-full items-center gap-1 p-[5px] border-2 dark:border-gray-600 rounded-md cursor-pointer" >
                     <div className="flex items-center gap-2 w-full ">
-                        <span className="h-4 w-4 bg-red-500 rounded-[4px] " ></span>
+                        <span className="h-4 w-4 rounded-[4px]" style={{ backgroundColor: randomColor }}></span>
                         <span className="text-md font-semibold text-gray-500 dark:text-white w-[10vw] overflow-clip " >{name}</span>
                     </div>
                     <button className={` flex items-center justify-center`} >
@@ -170,6 +152,16 @@ const Left = () => {
             </li>
         )
     }
+
+    const VideoList = ({ id, NOFTask, name, onAddNew, to }) => {
+        const randomColor = useMemo(() => getRandomColor(), [id]);
+        return (
+            <Link to={to} className="flex items-center justify-center p-1 border-[1px] dark:border-gray-600 rounded-md cursor-pointer" >
+                <span className="h-6 w-6 rounded-[4px] text-white flex items-center justify-center " style={{ backgroundColor: randomColor }}>{name?.charAt(0).toUpperCase()}</span>
+            </Link>
+        )
+    }
+
 
     const TaskItems1 = ({ to, Icon, Title, id, NOFTask, selectedDiv, setselectedDiv }) => {
         return (
@@ -203,6 +195,9 @@ const Left = () => {
                     <Link to="/Calendar" ><FaCalendarAlt className="text-3xl mb-3 hover:text-gray-500" /></Link>
                     {/* <Link to="/StickyWall" ><FaNoteSticky className="text-3xl mb-3 " /></Link> */}
                     {/* <ChatBot/> */}
+                    {FilteredVideo.map((site) => (
+                        <VideoList to={`/web/${site.name}`} key={site.id} name={site.name} id={site.id} />
+                    ))}
                 </div>
             </>
         )

@@ -1,6 +1,6 @@
 # My Todo App
 
-A modern, feature-rich Todo application built with React and TailwindCSS that helps you organize your tasks, manage your schedule, and stay productive.
+A modern, feature-rich Study app application built with React and TailwindCSS that helps you organize your tasks, manage your schedule, and stay productive.
 
 ![Todo App Screenshot](https://via.placeholder.com/800x450?text=Todo+App+Screenshot)
 

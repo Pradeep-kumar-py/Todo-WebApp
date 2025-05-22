@@ -96,18 +96,57 @@ const Left = () => {
 
 
 
+    // const handleAddNewList = (name, SiteUrl) => {
+    //     try {
+    //         const url = new URL(SiteUrl);
+    //         let embedUrl = SiteUrl;
+
+    //         if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
+    //             const videoId = url.searchParams.get("v");
+    //             if (videoId) {
+    //                 embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    //             }
+    //         } else if (url.hostname === "youtu.be") {
+    //             embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+    //         }
+
+    //         const newList = { id: Date.now(), name, SiteUrl: embedUrl };
+    //         setLists((prevLists) => [...prevLists, newList]);
+    //         console.log("Added new list:", newList);
+    //     } catch (error) {
+    //         console.error("Invalid URL format:", error);
+    //         alert("Please enter a valid URL.");
+    //     }
+    // };
+
+
     const handleAddNewList = (name, SiteUrl) => {
         try {
             const url = new URL(SiteUrl);
             let embedUrl = SiteUrl;
 
-            if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
+            if (
+                url.hostname === "www.youtube.com" ||
+                url.hostname === "youtube.com"
+            ) {
                 const videoId = url.searchParams.get("v");
-                if (videoId) {
+                const playlistId = url.searchParams.get("list");
+
+                // Playlist with or without a specific video
+                if (playlistId) {
+                    embedUrl = `https://www.youtube.com/embed/videoseries?list=${playlistId}`;
+                } else if (videoId) {
                     embedUrl = `https://www.youtube.com/embed/${videoId}`;
                 }
             } else if (url.hostname === "youtu.be") {
-                embedUrl = `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+                const path = url.pathname.slice(1);
+                const playlistId = url.searchParams.get("list");
+
+                if (playlistId) {
+                    embedUrl = `https://www.youtube.com/embed/videoseries?list=${playlistId}`;
+                } else {
+                    embedUrl = `https://www.youtube.com/embed/${path}`;
+                }
             }
 
             const newList = { id: Date.now(), name, SiteUrl: embedUrl };
@@ -118,6 +157,7 @@ const Left = () => {
             alert("Please enter a valid URL.");
         }
     };
+
 
     const handleDeleteSite = (id) => {
         setLists((previousSite) => previousSite.filter(list => list.id != id))

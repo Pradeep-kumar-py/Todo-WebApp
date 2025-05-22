@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { TodoContext } from "../TodoContext";
 
 
@@ -22,8 +22,10 @@ const WebViewer = () => {
                 className="w-full h-full border-none"
                 title={website.name}
                 frameBorder={0}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
             />
+
         </div>
     );
 

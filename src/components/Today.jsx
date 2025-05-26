@@ -8,6 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 
 import { BsThreeDots } from "react-icons/bs";
 
+
 const Today = () => {
 
   const { TaskBox, setTaskBox } = useContext(TodoContext)
@@ -238,6 +239,7 @@ const Today = () => {
           onSaveEdit={handleSaveEditTaskBox}
           onAddTask={handleNewCheckBox} />
       ))}
+
     </>
   )
 }
